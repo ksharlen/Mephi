@@ -37,6 +37,7 @@
 **COLORS
 */
 # define DFLT_COLOR	"\x1b[0m"
+# define WAR_COLOR	"\x1b[38;2;217;89;208m"
 # define ERR_COLOR	"\x1b[38;2;224;58;58m"
 
 /*
@@ -67,7 +68,8 @@ void	mp_putstr_fd(int fd, const char *str);
 **read
 */
 int		mp_clean_stdin(void);
-void	mp_validated_input(const char *fmt, void *src, const char *err_str);
+void	mp_validated_input(const char *fmt, void *src, const char *err_str, const char *greet);
+int		mp_check_input(const char *fmt, void *src, const char *err_str);
 
 /*
 **ERRORS

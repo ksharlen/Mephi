@@ -8,6 +8,7 @@ list	*mp_createelem(void *content, size_t content_size)
 	{
 		new = (list *)mp_calloc(1, sizeof(list));
 		new->content = mp_malloc(content_size);
+		memcpy(new->content, content, content_size);
 		new->content_size = content_size;
 		new->next = NULL;
 	}

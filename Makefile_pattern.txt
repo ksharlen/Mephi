@@ -47,3 +47,5 @@ fclean:
 	$(REMOVE_FILE)
 
 re: clean fclean all
+
+.SILENT: all $(NAME) $(OBJ) $(DIR_OBJ) $(LIB) clean fclean re

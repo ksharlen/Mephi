@@ -2,7 +2,7 @@
 
 void	mp_warning(const char *err)
 {
-	mp_putstr_fd(STDOUT_FILENO, err);
+	mp_putstr_fd(STDERR_FILENO, err);
 }
 
 void	mp_die(const char *err, const char *filename, const int line)

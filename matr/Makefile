@@ -1,5 +1,8 @@
 NAME			:=	matr
-SRC				:=	main.c
+SRC				:=	main.c\
+						input.c\
+						output.c
+
 OBJ				:=	$(SRC:.c=.o)
 HEADERS			:=	libmp.h matr.h
 LIB				:=	libmp.a
@@ -47,3 +50,5 @@ fclean:
 	$(REMOVE_FILE)
 
 re: clean fclean all
+
+.SILENT: all $(NAME) $(OBJ) $(DIR_OBJ) $(LIB) clean fclean re
