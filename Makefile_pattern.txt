@@ -1,5 +1,5 @@
 NAME			:=	matr
-SRC				:=	main.c
+SRC				:=	
 OBJ				:=	$(SRC:.c=.o)
 HEADERS			:=	libmp.h matr.h
 LIB				:=	libmp.a
