@@ -7,7 +7,7 @@ static struct line *alloc_lines(size_t numLines)
 
 static void	input_line(struct line *line)
 {
-	mp_validated_input("%d", &line->sizeLine, INVALID_SIZE_LINE, INPUT_SIZE_LINE);
+	// mp_validated_input("%d", &line->sizeLine, INVALID_SIZE_LINE, INPUT_SIZE_LINE);
 	line->value = mp_calloc(line->sizeLine, sizeof(int));
 	for (int i = 0; i < line->sizeLine; ++i)
 	{
@@ -21,6 +21,9 @@ static void input_lines(matrix *matr)
 {
 	for (int i = 0; i < matr->numLines; ++i)
 	{
+		do
+			fprintf(stdout, "Введите кол-во элементов %d-ой строки: ", i + 1);
+		while (!mp_check_input("%d", &matr->lines[i].sizeLine, INVALID_SIZE_LINE));
 		input_line(&matr->lines[i]);
 	}
 }
