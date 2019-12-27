@@ -6,6 +6,8 @@
 # include <locale.h>
 
 # include "libmp.h"
+# include "structs.h"
+# include "mp_types.h"
 
 # define MATR_INIT {NULL, 0}
 
@@ -14,23 +16,11 @@
 
 # define INVALID_NUM_LINES	"Вы ввели невернео кол-во строк\r\n"
 # define INVALID_SIZE_LINE	"Вы ввели неверное кол-во элементов строки\r\n"
-# define INVALID_VALUE		"Вы ввели невернео значение элемента\r\n"
+# define INVALID_VALUE		"Вы ввели невернео значение элемента\r\n"\
+
 # define REPEAT_INPUT		"Попробуйте еще раз"
 
-struct line
-{
-	size_t	sizeLine;
-	int		*value;
-};
-
-typedef struct	matr
-{
-	struct line *lines;
-	size_t		numLines;
-}				matrix;
-
 void	input(matrix *matr);
-
 void	printMatr(matrix *matr);
 
 #endif

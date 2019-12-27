@@ -2,12 +2,11 @@
 
 static struct line *alloc_lines(size_t numLines)
 {
-	mp_calloc(numLines, sizeof(struct line));
+	return ((struct line *)mp_calloc(numLines, sizeof(struct line)));
 }
 
 static void	input_line(struct line *line)
 {
-	// mp_validated_input("%d", &line->sizeLine, INVALID_SIZE_LINE, INPUT_SIZE_LINE);
 	line->value = mp_calloc(line->sizeLine, sizeof(int));
 	for (int i = 0; i < line->sizeLine; ++i)
 	{

@@ -6,6 +6,7 @@ int		main(void)
 
 
 	setlocale(LC_ALL, "Russian");
+
 	input(&matr);
 	printMatr(&matr);
 	//parser(&matr)

@@ -10,7 +10,7 @@ SRC				:=	mp_clean_stream.c\
 						mp_alloc.c
 
 OBJ				:=	$(SRC:.c=.o)
-HEADERS			:=	libmp.h
+HEADERS			:=	libmp.h structs.h mp_types.h macros.h
 
 DIR_OBJ			:=	obj
 OBJ_WITH_PATH	:=	$(addprefix $(DIR_OBJ)/, $(OBJ))
