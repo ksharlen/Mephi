@@ -11,13 +11,21 @@
 # include <limits.h>
 
 //WINDOWS
-# ifdef _WIN64
+# if (defined _WIN64 || defined _WIN32)
 #  include <io.h>
 #  define WRITE _write
-# elif _WIN32
-#  include <io.h>
-#  define WRITE _write
+# elif (defined linux || defined __linux__)
+#  include <unistd.h>
+#  define WRITE write
 # endif
+
+// # ifdef _WIN64
+// #  include <io.h>
+// #  define WRITE _write
+// # elif _WIN32
+// #  include <io.h>
+// #  define WRITE _write
+// # endif
 
 //LINUX
 # ifdef linux

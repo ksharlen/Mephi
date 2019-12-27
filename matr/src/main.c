@@ -4,6 +4,7 @@ int		main(void)
 {
 	matrix	matr = MATR_INIT;
 
+
 	setlocale(LC_ALL, "Russian");
 	input(&matr);
 	printMatr(&matr);
