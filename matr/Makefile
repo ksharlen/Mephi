@@ -8,20 +8,20 @@ HEADERS			:=	libmp.h matr.h
 LIB				:=	libmp.a
 
 DIR_SRC			:=	src
-DIR_LIB			:=	..\lib
+DIR_LIB			:=	../lib
 DIR_OBJ			:=	obj
-DIR_INCLUDE_LIB	:=	..\lib
-DIR_INCLUDE		:=	.\include
+DIR_INCLUDE_LIB	:=	../lib
+DIR_INCLUDE		:=	./include
 DIR_INCLUDES	:=	$(DIR_INCLUDE_LIB) $(DIR_INCLUDE)
 
 CC				:=	gcc
 CFLAGS			:=	-Wall -Wextra -Werror
 
-REMOVE_DIR		:=	rd /S /Q
-REMOVE_FILE		:=	del /Q
+REMOVE_DIR		:=	rm -rf
+REMOVE_FILE		:=	rm -rf
 
-OBJ_WITH_PATH	:=	$(addprefix $(DIR_OBJ)\, $(OBJ))
-LIB_WITH_PATH	:=	$(DIR_LIB)\$(LIB)
+OBJ_WITH_PATH	:=	$(addprefix $(DIR_OBJ)/, $(OBJ))
+LIB_WITH_PATH	:=	$(DIR_LIB)/$(LIB)
 INCLUDES		:= $(addprefix -I , $(DIR_INCLUDE) $(DIR_INCLUDE_LIB))
 
 vpath		%.c $(DIR_SRC)
@@ -38,10 +38,10 @@ $(OBJ):%.o:%.c $(HEADERS) | $(DIR_OBJ)
 	$(CC) $(CFALGS) -c $< -o $(DIR_OBJ)/$@ $(INCLUDES) -pipe
 
 $(DIR_OBJ):
-	md $@
+	mkdir -p $@
 
 $(LIB):
-	make -C ..\lib
+	make -C ../lib
 
 clean:
 	$(REMOVE_DIR) $(DIR_OBJ)

@@ -11,7 +11,7 @@ static void	input_line(struct line *line)
 	for (int i = 0; i < line->sizeLine; ++i)
 	{
 		do
-			fprintf(stdout, "Ââåäèòå %d-ûé ýëåìåíò: ", i + 1);
+			fprintf(stdout, "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ %d-Ñ‹Ð¹ ÑÐ»ÐµÐ¼ÐµÐ½Ñ‚: ", i + 1);
 		while (!mp_check_input("%d", &line->value[i], INVALID_VALUE));
 	}
 }
@@ -21,7 +21,7 @@ static void input_lines(matrix *matr)
 	for (int i = 0; i < matr->numLines; ++i)
 	{
 		do
-			fprintf(stdout, "Ââåäèòå êîë-âî ýëåìåíòîâ %d-îé ñòðîêè: ", i + 1);
+			fprintf(stdout, "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ ÐºÐ¾Ð»-Ð²Ð¾ ÑÐ»ÐµÐ¼ÐµÐ½Ñ‚Ð¾Ð² %d-Ð¹ ÑÑ‚Ñ€Ð¾ÐºÐ¸: ", i + 1);
 		while (!mp_check_input("%d", &matr->lines[i].sizeLine, INVALID_SIZE_LINE));
 		input_line(&matr->lines[i]);
 	}

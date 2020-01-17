@@ -18,7 +18,7 @@ void	mp_validated_input(const char *fmt, void *src, const char *err_str, const c
 		else if (ret_scanf == NO_RECORD || trash_stdin)
 		{
 			mp_warning(err_str);
-			mp_warning("Попробуйте еще раз\n");
+			mp_warning("РџРѕСЂРѕР±СѓР№С‚Рµ РµС‰Рµ СЂР°Р·\n");
 		}
 	} while (ret_scanf <= 0 || trash_stdin);
 }
@@ -36,7 +36,7 @@ int		mp_check_input(const char *fmt, void *src, const char *err_str)
 	else if (ret_scanf == NO_RECORD || trash_stdin)
 	{
 		mp_warning(err_str);
-		mp_warning("Попробуйте еще раз\n");
+		mp_warning("РџРѕРїСЂРѕР±СѓР№С‚Рµ РµС‰Рµ СЂР°Р·\n");
 	}
 	else
 		ret = 1;

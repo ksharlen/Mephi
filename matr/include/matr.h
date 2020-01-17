@@ -2,7 +2,6 @@
 # define MATR_H
 
 # include <stdio.h>
-# include <io.h>
 # include <locale.h>
 
 # include "libmp.h"
@@ -11,14 +10,14 @@
 
 # define MATR_INIT {NULL, 0}
 
-# define INPUT_NUM_LINES	"Введите кол-во строк: "
-# define INPUT_SIZE_LINE	"Введите кол-во элементов строки: "
+# define INPUT_NUM_LINES	"Р’РІРµРґРёС‚Рµ РєРѕР»-РІРѕ СЃС‚СЂРѕРє: "
+# define INPUT_SIZE_LINE	"Р’РІРµРґРёС‚Рµ СЂР°Р·РјРµСЂ СЃС‚СЂРѕРєРё: "
 
-# define INVALID_NUM_LINES	"Вы ввели невернео кол-во строк\r\n"
-# define INVALID_SIZE_LINE	"Вы ввели неверное кол-во элементов строки\r\n"
-# define INVALID_VALUE		"Вы ввели невернео значение элемента\r\n"\
+# define INVALID_NUM_LINES	"Р’С‹ РІРІРµР»Рё РЅРµРІРµСЂРЅРѕРµ РєРѕР»-РІРѕ СЃС‚СЂРѕРє\n"
+# define INVALID_SIZE_LINE	"Р’С‹ РІРІРµР»Рё РЅРµРІРµСЂРЅС‹Р№ СЂР°Р·РјРµСЂ СЃС‚СЂРѕРєРё\n"
+# define INVALID_VALUE		"Р’С‹ РІРІРµР»Рё РЅРµРІРµСЂРЅРѕРµ Р·РЅР°С‡РµРЅРёРµ\n"
 
-# define REPEAT_INPUT		"Попробуйте еще раз"
+# define REPEAT_INPUT		"РџРѕРІС‚РѕСЂРёС‚Рµ РµС‰Рµ СЂР°Р·"
 
 void	input(matrix *matr);
 void	printMatr(matrix *matr);
