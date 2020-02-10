@@ -1,27 +1,40 @@
-MAKE 	:=	make -f
-WIN		:=	Makefile.windows
-LNX		:=	Makefile.linux
+#THIS MAKEFILE FOR LINUX
+NAME			:=	libmp.a
+SRC				:=	mp_clean_stream.c\
+						mp_errors.c\
+						mp_putstr_fd.c\
+						mp_validated_input.c\
+						mp_write.c\
+						mp_alloc.c
 
-win:
-	$(MAKE) $(WIN)
+OBJ				:=	$(SRC:.c=.o)
+HEADERS			:=	libmp.h
 
-win_fclean:
-	$(MAKE) $(WIN) fclean
+DIR_OBJ			:=	obj
+OBJ_WITH_PATH	:=	$(addprefix $(DIR_OBJ)/, $(OBJ))
 
-win_re:
-	$(MAKE) $(WIN) re
+CFLAGS			:=	-Wall -Wextra -Werror
+CC				:=	gcc
 
-win_clean:
-	$(MAKE) $(WIN) clean
+vpath	%.o	$(DIR_OBJ)
 
-lnx:
-	$(MAKE) $(LNX)
+all: $(NAME)
 
-lnx_fclean:
-	$(MAKE) $(LNX) fclean
+$(NAME): $(OBJ)
+	ar rcus $@ $(OBJ_WITH_PATH)
 
-lnx_clean:
-	$(MAKE) $(LNX) clean
+$(OBJ): %.o:%.c $(HEADERS) | $(DIR_OBJ)
+	$(CC) $(CFLAGS) -c $< -o $(DIR_OBJ)/$@ -pipe
 
-lnx_re:
-	$(MAKE) $(LNX) re
+$(DIR_OBJ):
+	mkdir -p $@
+
+clean:
+	rm -rf $(DIR_OBJ)
+
+fclean:
+	rm -rf $(NAME)
+
+re: fclean all
+
+.SILENT: all $(NAME) $(OBJ) $(DIR_OBJ) clean fclean re

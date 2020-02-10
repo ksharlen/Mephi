@@ -1,177 +1,81 @@
 #include "matr.h"
 
-int		isDbl(int *arr, size_t size)
+static size_t	getPosNextCheckDublicate(char *arrOfDublicate, size_t sizeArr, size_t i)
+{
+	while (i < sizeArr)
+	{
+		if (arrOfDublicate[i])
+			++i;
+		else
+			break ;
+	}
+	return (i);
+}
+
+static void	fillArrDublicate(char *arrOfDublicate, struct line *srcLine)
 {
 	size_t	i = 0;
-	int	val = arr[i];
+	size_t	j;
+	int		flag_dublicate = 0;
 
-	while (i < size)
+	while (i < srcLine->sizeLine)
 	{
-		if (val == arr[++i])
-			return (TRUE);
-	}
-	return (FALSE);
-}
-
-static size_t	getI(char *arr, size_t size, size_t i)
-{
-	size_t	j = i + 1;
-
-	j = i + 1;
-	while (j < size)
-	{
-		if (arr[j])
-			return (j);
-		++j;
-	}
-	return (j);
-}
-
-static void	print_tmp(char *tmp, size_t	size)
-{
-	size_t i = 0;
-
-	while (i < size)
-	{
-		printf("%d\n", tmp[i]);
-		++i;
-	}
-}
-
-static char	*getTmpArr(struct line *src_line)
-{
-	size_t	i = 0;
-
-	char	*tmp = (char *)mp_calloc(src_line->sizeLine, sizeof(char));
-
-	memset(tmp, 1, sizeof(char) * src_line->sizeLine);
-	while (i < src_line->sizeLine)
-	{
-		size_t	j = i + 1;
-		int		flag = 0;
-
-		while (j < src_line->sizeLine)
+		j = i + 1;
+		while (j < srcLine->sizeLine)
 		{
-			if (src_line->value[j] == src_line->value[i])
+			if (srcLine->value[j] == srcLine->value[i])
 			{
-				tmp[j] = 0;
-				flag = 1;
+				arrOfDublicate[j] = 1;
+				flag_dublicate = 1;
 			}
 			++j;
 		}
-		if (!flag)
-			tmp[i] = 0;
-		flag = 0;
-		i = getI(tmp, src_line->sizeLine, i);
+		if (flag_dublicate)
+		{
+			arrOfDublicate[i] = 1;
+			flag_dublicate = 0;
+		}
+		i = getPosNextCheckDublicate(arrOfDublicate, srcLine->sizeLine, i + 1);
 	}
-	return (tmp);
 }
 
-static size_t	getSizeNewLine(char *tmp, size_t size)
+static void	print_tmp(char *arrayOfDublicate, size_t size)
 {
-	size_t	numElems = 0;
 	size_t	i = 0;
 
+	printf("array:\n");
 	while (i < size)
 	{
-		if (tmp[i])
-			++numElems;
+		printf("%d	", arrayOfDublicate[i]);
 		++i;
 	}
-	return (numElems);
+	printf("\n");
 }
 
-static void	fill_line(int *newLine, char *tmp, struct line *oldLine)
+void	getRepeatValue(struct line *srcLine, struct line *newLine)
 {
-	size_t	i = 0;
-	size_t	j = 0;
+	char	*arrayOfDublicate;
 
-	while (i < oldLine->sizeLine)
-	{
-		if (tmp[i])
-		{
-			newLine[j] = oldLine->value[i];
-			++j;
-		}
-		++i;
-	}
-}
+	arrayOfDublicate = (char *)mp_calloc(srcLine->sizeLine, sizeof(char));
+	fillArrDublicate(arrayOfDublicate, srcLine);
 
-static void		print_int(struct line *line)
-{
-	size_t	i = 0;
+print_tmp(arrayOfDublicate, srcLine->sizeLine);
 
-	while (i < line->sizeLine)
-	{
-		printf("elem: %d\n", line->value[i]);
-		++i;
-	}
-}
-
-static size_t	getQtRepeat(struct line *src_line, struct line *newLine)
-{
-	char	*tmp;
-	size_t	i = 0;
-	size_t	sizeNewLine;
-
-	tmp = getTmpArr(src_line);
-	sizeNewLine = getSizeNewLine(tmp, src_line->sizeLine);
-	if (sizeNewLine)
-	{
-		newLine->value = (int *)mp_calloc(sizeNewLine, sizeof(int));
-		fill_line(newLine->value, tmp, src_line);
-	}
-i = 0;
-if (sizeNewLine)
-while (i < sizeNewLine)
-{
-	printf("%d	", newLine->value[i]);
-	++i;
-}
-else
-	printf("0");
-printf("\n");
-	newLine->sizeLine = sizeNewLine;
-	free(tmp);
-	return (0);
-}
-
-void	getRepeatValue(struct line *line_src_matr, struct line *res_line)
-{
-	res_line->sizeLine = getQtRepeat(line_src_matr, res_line);
-
-}
-
-static void	print_test(matrix *src)
-{
-	size_t	i = 0;
-
-	while (i < src->numLines)
-	{
-		size_t	j = 0;
-		while (j < src->lines[i].sizeLine)
-		{
-			printf("%d	", src->lines[i].value[j]);
-			++j;
-		}
-		printf("\n");
-		++i;
-	}
-	exit(EXIT_FAILURE);
+	free(arrayOfDublicate);
+	arrayOfDublicate = NULL;
 }
 
 matrix	parser(matrix *src_matr)
 {
-	matrix	result_matr;
+	matrix	newMatr;
 	size_t	i = 0;
 
-	result_matr.lines = (struct line *)mp_calloc(src_matr->numLines, sizeof(struct line));
-	result_matr.numLines = src_matr->numLines;
-	while (i < result_matr.numLines)
+	newMatr.lines = (struct line *)mp_calloc(src_matr->numLines, sizeof(struct line));
+	newMatr.numLines = src_matr->numLines;
+	while (i < newMatr.numLines)
 	{
-		getRepeatValue(&src_matr->lines[i], &result_matr.lines[i]);
+		getRepeatValue(&src_matr->lines[i], &newMatr.lines[i]);
 		++i;
 	}
-print_test(&result_matr);
-	return (result_matr);
+	return (newMatr);
 }

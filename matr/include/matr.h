@@ -5,7 +5,6 @@
 # include <locale.h>
 
 # include "libmp.h"
-# include "structs.h"
 # include "mp_types.h"
 
 # define MATR_INIT {NULL, 0}
@@ -21,6 +20,18 @@
 
 # define TRUE	1
 # define FALSE	0
+
+struct line
+{
+	len_t	sizeLine;
+	int		*value;
+};
+
+typedef struct	matr
+{
+	struct line *lines;
+	size_t		numLines;
+}				matrix;
 
 void	input(matrix *matr);
 void	printMatr(matrix *matr);

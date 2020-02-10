@@ -19,15 +19,14 @@ static void	printNewMatr(matrix *newMatr)
 
 int		main(void)
 {
-	matrix	matr = MATR_INIT;
-	matrix	newMatr;
-
+	matrix	srcMatr = MATR_INIT;
+	matrix	newMatr = MATR_INIT;
 
 	setlocale(LC_ALL, "Russian");
 
-	input(&matr);
-	newMatr = parser(&matr);
-	printMatr(&matr);
+	input(&srcMatr);
+	newMatr = parser(&srcMatr);
+	//printMatr(&matr);
 	//output(&matr)
 	return (0);
 }
