@@ -121,6 +121,16 @@ static size_t	getQtRepeat(struct line *src_line, struct line *newLine)
 		newLine->value = (int *)mp_calloc(sizeNewLine, sizeof(int));
 		fill_line(newLine->value, tmp, src_line);
 	}
+i = 0;
+if (sizeNewLine)
+while (i < sizeNewLine)
+{
+	printf("%d	", newLine->value[i]);
+	++i;
+}
+else
+	printf("0");
+printf("\n");
 	newLine->sizeLine = sizeNewLine;
 	free(tmp);
 	return (0);
@@ -138,9 +148,16 @@ static void	print_test(matrix *src)
 
 	while (i < src->numLines)
 	{
-		printf("qt_elem: %zd\n", src->lines[i].sizeLine);
+		size_t	j = 0;
+		while (j < src->lines[i].sizeLine)
+		{
+			printf("%d	", src->lines[i].value[j]);
+			++j;
+		}
+		printf("\n");
 		++i;
 	}
+	exit(EXIT_FAILURE);
 }
 
 matrix	parser(matrix *src_matr)
@@ -155,6 +172,6 @@ matrix	parser(matrix *src_matr)
 		getRepeatValue(&src_matr->lines[i], &result_matr.lines[i]);
 		++i;
 	}
-// print_test(&result_matr);
+print_test(&result_matr);
 	return (result_matr);
 }
