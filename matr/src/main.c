@@ -9,7 +9,7 @@ int		main(void)
 
 	input(&matr);
 	printMatr(&matr);
-	//parser(&matr)
+	parser(&matr);
 	//output(&matr)
 	return (0);
 }

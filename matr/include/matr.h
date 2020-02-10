@@ -19,7 +19,11 @@
 
 # define REPEAT_INPUT		"Повторите еще раз"
 
+# define TRUE	1
+# define FALSE	0
+
 void	input(matrix *matr);
 void	printMatr(matrix *matr);
+matrix	parser(matrix *src_matr);
 
 #endif

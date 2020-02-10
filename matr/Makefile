@@ -1,7 +1,8 @@
 NAME			:=	matr
 SRC				:=	main.c\
 						input.c\
-						output.c
+						output.c\
+						parser.c
 
 OBJ				:=	$(SRC:.c=.o)
 HEADERS			:=	libmp.h matr.h
