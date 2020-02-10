@@ -52,17 +52,56 @@ static void	print_tmp(char *arrayOfDublicate, size_t size)
 	printf("\n");
 }
 
+len_t	getSizeNewLine(char *arrayOfDublicate, size_t sizeArr)
+{
+	size_t	i = 0;
+	size_t	qtDublicate = 0;
+
+	while (i < sizeArr)
+	{
+		if (arrayOfDublicate[i])
+			++qtDublicate;
+		++i;
+	}
+	return (qtDublicate);
+}
+
+static void	fillNewLine(struct line *newLine, char *arrayOfDublicate, struct line *srcLine)
+{
+	size_t	currElemArrOfDublicate = 0;
+	size_t	currElemArrNewLine = 0;
+
+	newLine->value = (int *)mp_calloc(newLine->sizeLine, sizeof(int));
+	while (currElemArrNewLine < srcLine->sizeLine)
+	{
+		if (arrayOfDublicate[currElemArrOfDublicate])
+		{
+			newLine->value[currElemArrNewLine] = srcLine->value[currElemArrOfDublicate];
+			++currElemArrNewLine;
+		}
+		++currElemArrOfDublicate;
+	}
+}
+
 void	getRepeatValue(struct line *srcLine, struct line *newLine)
 {
 	char	*arrayOfDublicate;
 
-	arrayOfDublicate = (char *)mp_calloc(srcLine->sizeLine, sizeof(char));
-	fillArrDublicate(arrayOfDublicate, srcLine);
-
-print_tmp(arrayOfDublicate, srcLine->sizeLine);
-
-	free(arrayOfDublicate);
-	arrayOfDublicate = NULL;
+//TODO newLine->value = NULL;
+	if (srcLine->sizeLine)
+	{
+		arrayOfDublicate = (char *)mp_calloc(srcLine->sizeLine, sizeof(char));
+		fillArrDublicate(arrayOfDublicate, srcLine);
+		newLine->sizeLine = getSizeNewLine(arrayOfDublicate, srcLine->sizeLine);
+printf("sizeNewLine: %zd\n", newLine->sizeLine);
+//TODO else newLine->value = NULL
+		if (newLine->sizeLine)
+		{
+			fillNewLine(newLine, arrayOfDublicate, srcLine);
+		}
+		free(arrayOfDublicate);
+		arrayOfDublicate = NULL;
+	}
 }
 
 matrix	parser(matrix *src_matr)

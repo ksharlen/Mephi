@@ -26,6 +26,7 @@ int		main(void)
 
 	input(&srcMatr);
 	newMatr = parser(&srcMatr);
+	output(&srcMatr, &newMatr);
 	//printMatr(&matr);
 	//output(&matr)
 	return (0);

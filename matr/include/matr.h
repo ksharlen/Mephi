@@ -34,7 +34,8 @@ typedef struct	matr
 }				matrix;
 
 void	input(matrix *matr);
-void	printMatr(matrix *matr);
 matrix	parser(matrix *src_matr);
+void	output(matrix *srcMatr, matrix *newMatr);
+// void	printMatr(matrix *matr);
 
 #endif
