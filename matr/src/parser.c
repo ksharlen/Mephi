@@ -87,34 +87,36 @@ void	getRepeatValue(struct line *srcLine, struct line *newLine)
 {
 	char	*arrayOfDublicate;
 
-//TODO newLine->value = NULL;
 	if (srcLine->sizeLine)
 	{
 		arrayOfDublicate = (char *)mp_calloc(srcLine->sizeLine, sizeof(char));
 		fillArrDublicate(arrayOfDublicate, srcLine);
 		newLine->sizeLine = getSizeNewLine(arrayOfDublicate, srcLine->sizeLine);
-printf("sizeNewLine: %zd\n", newLine->sizeLine);
-//TODO else newLine->value = NULL
 		if (newLine->sizeLine)
-		{
 			fillNewLine(newLine, arrayOfDublicate, srcLine);
-		}
+		else
+			*newLine = EMPTY_LINE;
 		free(arrayOfDublicate);
 		arrayOfDublicate = NULL;
 	}
+	else
+		*newLine = EMPTY_LINE;
 }
 
 matrix	parser(matrix *src_matr)
 {
-	matrix	newMatr;
+	matrix	newMatr = MATR_INIT;
 	size_t	i = 0;
 
-	newMatr.lines = (struct line *)mp_calloc(src_matr->numLines, sizeof(struct line));
-	newMatr.numLines = src_matr->numLines;
-	while (i < newMatr.numLines)
+	if (src_matr->numLines)
 	{
-		getRepeatValue(&src_matr->lines[i], &newMatr.lines[i]);
-		++i;
+		newMatr.lines = (struct line *)mp_calloc(src_matr->numLines, sizeof(struct line));
+		newMatr.numLines = src_matr->numLines;
+		while (i < newMatr.numLines)
+		{
+			getRepeatValue(&src_matr->lines[i], &newMatr.lines[i]);
+			++i;
+		}
 	}
 	return (newMatr);
 }

@@ -7,13 +7,18 @@ static struct line *alloc_lines(size_t numLines)
 
 static void	input_line(struct line *line)
 {
-	line->value = mp_calloc(line->sizeLine, sizeof(int));
-	for (int i = 0; i < line->sizeLine; ++i)
+	if (line->sizeLine)
 	{
-		do
-			fprintf(stdout, "Введите %d-ый элемент: ", i + 1);
-		while (!mp_check_input("%d", &line->value[i], INVALID_VALUE));
+		line->value = mp_calloc(line->sizeLine, sizeof(int));
+		for (int i = 0; i < line->sizeLine; ++i)
+		{
+			do
+				fprintf(stdout, "Введите %d-ый элемент: ", i + 1);
+			while (!mp_check_input("%d", &line->value[i], INVALID_VALUE));
+		}
 	}
+	else
+		line->value = NULL;
 }
 
 static void input_lines(matrix *matr)
@@ -32,8 +37,13 @@ void	input(matrix *matr)
 	if (matr)
 	{
 		mp_validated_input("%zd", &matr->numLines, INVALID_NUM_LINES, INPUT_NUM_LINES);
-		matr->lines = alloc_lines(matr->numLines);
-		input_lines(matr);
+		if (matr->numLines)
+		{
+			matr->lines = alloc_lines(matr->numLines);
+			input_lines(matr);
+		}
+		else
+			matr->lines = NULL;
 	}
 	else
 		MP_DIE("input: invalid matr");

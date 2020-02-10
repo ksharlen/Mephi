@@ -10,7 +10,6 @@ void	mp_validated_input(const char *fmt, void *src, const char *err_str, const c
 	do
 	{
 		fprintf(stdout, "%s", greet);
-		// greet();
 		ret_scanf = scanf(fmt, src);
 		trash_stdin = mp_clean_stdin();
 		if (ret_scanf == ERR)

@@ -21,13 +21,16 @@
 # define TRUE	1
 # define FALSE	0
 
+# define EMPTY_LINE	(struct line){0, NULL}
+# define EMPTY_MATRIX	(struct matrix){NULL, 0}
+
 struct line
 {
 	len_t	sizeLine;
 	int		*value;
 };
 
-typedef struct	matr
+typedef struct	s_matr
 {
 	struct line *lines;
 	size_t		numLines;
