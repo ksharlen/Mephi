@@ -5,7 +5,8 @@ SRC				:=	mp_clean_stream.c\
 						mp_putstr_fd.c\
 						mp_validated_input.c\
 						mp_write.c\
-						mp_alloc.c
+						mp_alloc.c\
+						mp_atoi.c
 
 OBJ				:=	$(SRC:.c=.o)
 HEADERS			:=	libmp.h

@@ -40,6 +40,5 @@ void	input(matrix *matr);
 matrix	parser(matrix *src_matr);
 void	output(matrix *srcMatr, matrix *newMatr);
 void	erase(matrix *srcMatr, matrix *nexMatr);
-// void	printMatr(matrix *matr);
 
 #endif

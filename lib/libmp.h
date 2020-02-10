@@ -94,6 +94,11 @@ void	*mp_malloc(size_t size);
 void	mp_memdel(void **ptr);
 
 /*
+**STRING
+*/
+int		mp_atoi(const char *str);
+
+/*
 **LIST
 */
 list	*mp_createelem(void *content, size_t content_size);
