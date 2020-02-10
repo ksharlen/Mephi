@@ -72,7 +72,7 @@ static void	fillNewLine(struct line *newLine, char *arrayOfDublicate, struct lin
 	size_t	currElemArrNewLine = 0;
 
 	newLine->value = (int *)mp_calloc(newLine->sizeLine, sizeof(int));
-	while (currElemArrNewLine < srcLine->sizeLine)
+	while (currElemArrOfDublicate < srcLine->sizeLine)
 	{
 		if (arrayOfDublicate[currElemArrOfDublicate])
 		{

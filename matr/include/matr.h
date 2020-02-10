@@ -22,7 +22,7 @@
 # define FALSE	0
 
 # define EMPTY_LINE	(struct line){0, NULL}
-# define EMPTY_MATRIX	(struct matrix){NULL, 0}
+# define EMPTY_MATRIX	(matrix){NULL, 0}
 
 struct line
 {
@@ -39,6 +39,7 @@ typedef struct	s_matr
 void	input(matrix *matr);
 matrix	parser(matrix *src_matr);
 void	output(matrix *srcMatr, matrix *newMatr);
+void	erase(matrix *srcMatr, matrix *nexMatr);
 // void	printMatr(matrix *matr);
 
 #endif
