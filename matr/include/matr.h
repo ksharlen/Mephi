@@ -39,6 +39,6 @@ typedef struct	s_matr
 void	input(matrix *matr);
 matrix	parser(matrix *src_matr);
 void	output(matrix *srcMatr, matrix *newMatr);
-void	erase(matrix *srcMatr, matrix *nexMatr);
+void	erase(matrix *srcMatr, matrix *newMatr);
 
 #endif
