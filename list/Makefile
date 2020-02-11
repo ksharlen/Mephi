@@ -2,7 +2,8 @@ NAME			:=	list
 
 SRC				:=	main.c\
 						input.c\
-						list.c
+						list.c\
+						list_delete.c
 
 OBJ				:=	$(SRC:.c=.o)
 HEADERS			:=	libmp.h list.h

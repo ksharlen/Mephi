@@ -9,7 +9,9 @@
 # include "libmp.h"
 
 # define INIT_LIST {NULL, NULL, 0}
-# define INIT_LINES {NULL, NULL}
+# define INIT_LINES {NULL, NULL, 0}
+
+# define CLEAN_LINE	(infoList_t){NULL, NULL, 0}
 
 # define SIZE_BUF 32
 
@@ -35,11 +37,19 @@ typedef struct	lines
 {
 	infoList_t	*beg;
 	infoList_t	*end;
+	size_t		qt_lines;
 }				lines_t;
 
 void			newElemList(infoList_t *list, char c);
 int				getLine(infoList_t *beg);
 void			addNewLine(lines_t *lines);
 void			input(lines_t *lines);
+
+/*
+**FREE MEMORY
+*/
+void			deleteLines(lines_t *lines);
+void			deleteLastLine(lines_t *lines);
+void			deleteLine(infoList_t **beg);
 
 #endif

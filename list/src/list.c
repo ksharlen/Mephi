@@ -59,5 +59,6 @@ void		addNewLine(lines_t *lines)
 			lines->beg = new;
 			lines->end = new;
 		}
+		++lines->qt_lines;
 	}
 }

@@ -28,6 +28,20 @@ int		getLine(infoList_t *beg)
 	return (retScanf);
 }
 
+static void	checkValidateInputString(infoList_t *beg)
+{
+	list_t	*curr = beg->beg;
+
+	while (curr)
+	{
+		if (!isdigit(curr->c) || !isspace(curr->c))
+		{
+			//DELTE LINE REPEAT INPUT
+		}
+		curr = curr->next;
+	}
+}
+
 void	getLines(lines_t *lines)
 {
 	int	readStream;
@@ -36,10 +50,12 @@ void	getLines(lines_t *lines)
 	{
 		addNewLine(lines);
 		readStream = getLine(lines->end);
+		checkValidateInputString(lines->end);
 		//TODO CHECK_INPUT в цикле
 	} while (readStream != EOF);
 }
 
+//TODO TMP FUNC
 static void	print_lines(lines_t *lines)
 {
 	while (lines->beg)
