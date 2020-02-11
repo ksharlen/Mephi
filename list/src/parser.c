@@ -35,37 +35,62 @@ static void	deleteSpacesAtBegin(infoList_t *line)
 	}//TODO delete spaces at begin
 }
 
-static list_t	*deleteExtraSpacesInsideString(list_t *line)
+static list_t	*deleteExtraSpacesInsideString(infoList_t *line, list_t *curr)
 {
-	
+	if (line->beg == curr)
+		deleteSpacesAtBegin(line);
+	else
+	{
+		list_t	*tmp;
+		//TODO удаляем все пробелы подряд кроме одного последнего перед числом, но если числа нет, удаляем и этот пробел
+		while (curr)
+		{
+			if (isspace(curr->c))
+			{
+				if ((curr->next && !isdigit(curr->next->c)) || (!curr->next))
+				{
+					tmp = curr;
+					curr = curr->next;
+					deleteSym(&curr);
+				}
+				else
+					break ;
+			}
+		}
+	}
+	return (curr);
 }
 
-// static void	deleteExtraSpaces(infoList_t *line)
-// {
-// 	list_t	*curr;
-
-// 	curr = line->beg;
-// 	deleteSpacesAtBegin(line);
-// 	if (line->beg)
-// 		deleteExtraSpacesInsideString(line);
-// 	//TODO need check line if (line->beg != NULL)
-// 	//TODO deleteExtraSpacesInsideString()
-// }
-
-static list_t	*checkNumberForParityOfBits(list_t *string)
+static list_t	*deleteNumber(list_t *number)
 {
-	list_t	*res = string;
+	list_t	*tmp;
 
-	while (res && !isspace(res->c))
+	while (number && !isspace(number->c))
 	{
-		if (!ISEVEN(res->c))
+		tmp = number;
+		number = number->next;
+		deleteSym(&number);
+	}
+	return (number);
+}
+
+//TODO до пробела или до конца строки
+static list_t	*checkNumberForParityOfBits(infoList_t *line, list_t *curr)
+{
+	list_t	*begBit = curr;
+
+	while (curr && !isspace(curr->c))
+	{
+		if (!ISEVEN(curr->c))
 		{
-			res = deleteNumber(string);
+			curr = deleteNumber(curr);
+			if (begBit == line->beg)
+				line->beg = curr;
 			break ;
 		}
-		res = res->next;
+		curr = curr->next;
 	}
-	return (res);
+	return (curr);
 }
 
 static void deleteExtraNumbers(infoList_t *line)
@@ -75,11 +100,12 @@ static void deleteExtraNumbers(infoList_t *line)
 
 	while (curr)
 	{
-		curr = сheckNumberForParityOfBits(curr);
+		curr = checkNumberForParityOfBits(line, curr);
 		if (!curr)
 			break ;
-		curr = deleteExtraSpacesInsideString(curr);
+		curr = deleteExtraSpacesInsideString(line, curr);
 	}
+	// printf("here\n");
 }
 
 static void	parseLine(infoList_t *line)
@@ -103,6 +129,8 @@ void	parser(lines_t *lines)
 		while (curr)
 		{
 			parseLine(curr);
+// output(lines);
+// exit(EXIT_FAILURE);
 			curr = curr->next;
 		}
 	}

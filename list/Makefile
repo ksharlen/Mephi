@@ -19,7 +19,7 @@ DIR_INCLUDE		:=	./include/
 DIR_INCLUDES	:=	$(DIR_INCLUDE_LIB) $(DIR_INCLUDE)
 
 CC				:=	gcc
-CFLAGS			:=	-Wall -Wextra -Werror
+CFLAGS			:=	-Wall -Wextra -Werror -g
 
 REMOVE_DIR		:=	rm -rf
 REMOVE_FILE		:=	rm -rf
@@ -36,7 +36,7 @@ vpath		%.a $(DIR_LIB)
 all: $(LIB) $(NAME)
 
 $(NAME): $(OBJ)
-	$(CC) $(OBJ_WITH_PATH) $(INCLUDES) -o $@ $(LIB_WITH_PATH)
+	$(CC) $(CFLAGS) $(OBJ_WITH_PATH) $(INCLUDES) -o $@ $(LIB_WITH_PATH)
 
 $(OBJ):%.o:%.c $(HEADERS) | $(DIR_OBJ)
 	$(CC) $(CFALGS) -c $< -o $(DIR_OBJ)$@ $(INCLUDES) -pipe
