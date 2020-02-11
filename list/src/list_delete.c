@@ -12,6 +12,18 @@ void	deleteList(list_t **beg)
 			(*beg) = (*beg)->next;
 			free(tmp);
 		}
+		(*beg) = NULL;
+	}
+}
+
+void	cleanLine(infoList_t **line)
+{
+	if (line && *line)
+	{
+		deleteList(&(*line)->beg);
+		(*line)->beg = NULL;
+		(*line)->end = NULL;
+		(*line)->size = 0;
 	}
 }
 
@@ -74,7 +86,7 @@ void	deleteLine(infoList_t **beg)
 	else if (*beg)
 	{
 		free(*beg);
-		*beg = NULL;
+		// *beg = NULL;
 	}
 	else
 		MP_DIE("beg == NULL || beg->size == 0");

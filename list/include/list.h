@@ -67,5 +67,6 @@ void			deleteLines(lines_t *lines);
 void			deleteLastLine(lines_t *lines);
 void			deleteLine(infoList_t **beg);
 void			freeLine(infoList_t *line);
+void			cleanLine(infoList_t **line);
 
 #endif
