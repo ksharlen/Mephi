@@ -2,17 +2,8 @@
 
 int		main(void)
 {
-	infoList_t	list = INIT_LIST;
-	list_t	*ptr;
+	lines_t	lines = INIT_LINES;
 
-	getLine(&list);
-ptr = list.beg;
-printf("size: %zd\n", list.size);
-printf("str: ");
-while (ptr)
-{
-	printf("%c", ptr->c);
-	ptr = ptr->next;
-}
+	input(&lines);
 	return (0);
 }

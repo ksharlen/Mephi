@@ -27,3 +27,41 @@ void	getLine(infoList_t *list)
 		}
 	} while (retScanf > 0);
 }
+
+void	getLine(infoList_t *beg)
+{
+	char	buf[SIZE_BUF] = {0};
+	int		retScanf;
+
+	do
+	{
+		retScanf = scanf(FMT_SCANF, buf);
+		if (retScanf > 0)
+		{
+			//TODO
+		}
+		else if (!retScanf)
+			scanf(CLEAR_STREAM);
+	}
+	while (retScanf > 0);
+	if (retScanf == EOF)
+		;//TODO Удалить последнюю строку
+	return (retScanf);
+}
+
+void	getLines(lines_t *lines)
+{
+	int	readStream;
+
+	do
+	{
+		addNewLine(lines);
+		getLine(lines->end);
+		//TODO CHECK_INPUT в цикле
+	} while (readStream != EOF);
+}
+
+void	input(lines_t *lines)
+{
+	getLines(&lines);
+}
