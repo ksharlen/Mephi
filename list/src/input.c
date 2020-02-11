@@ -1,14 +1,5 @@
 #include "list.h"
 
-static void	print_line(infoList_t *beg)
-{
-	while (beg->beg)
-	{
-		printf("%c", beg->beg->c);
-		beg->beg = beg->beg->next;
-	}
-}
-
 void	convertBufToList(infoList_t *list, char *buf)
 {
 	while (*buf)
@@ -33,8 +24,6 @@ int		getLine(infoList_t *beg)
 			scanf(CLEAR_STREAM);
 	}
 	while (retScanf > 0);
-	if (retScanf == EOF)
-		;//TODO Удалить последнюю строку
 	return (retScanf);
 }
 
@@ -65,30 +54,11 @@ void	getLines(lines_t *lines)
 		addNewLine(lines);
 		readStream = getLine(lines->end);
 		checkValidateInputString(lines->end);
-		//TODO CHECK_INPUT в цикле
 	} while (readStream != EOF);
 	deleteLastLine(lines);
-}
-
-//TODO TMP FUNC
-
-static void	print_lines(lines_t *lines)
-{
-	while (lines->beg)
-	{
-		while (lines->beg->beg)
-		{
-			printf("%c", lines->beg->beg->c);
-			lines->beg->beg = lines->beg->beg->next;
-		}
-		printf("\n");
-		lines->beg = lines->beg->next;
-	}
 }
 
 void	input(lines_t *lines)
 {
 	getLines(lines);
-	printf("%slines:%s\n", WAR_COLOR, DFLT_COLOR);
-	// print_lines(lines);
 }
