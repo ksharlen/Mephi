@@ -49,6 +49,7 @@ typedef struct	lines
 */
 void			input(lines_t *lines);
 void			output(lines_t *lines);
+void			parser(lines_t *lines);
 
 /*
 **LIST WORLK
@@ -60,6 +61,7 @@ void			addNewLine(lines_t *lines);
 /*
 **FREE MEMORY
 */
+void			deleteSym(list_t **sym);
 void			deleteLines(lines_t *lines);
 void			deleteLastLine(lines_t *lines);
 void			deleteLine(infoList_t **beg);

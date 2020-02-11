@@ -1,5 +1,14 @@
 #include "list.h"
 
+void	deleteSym(list_t **sym)
+{
+	if (sym && *sym)
+	{
+		free(*sym);
+		*sym = NULL;
+	}
+}
+
 void	freeLine(infoList_t *line)
 {
 	if (line->beg && line->size)

@@ -4,7 +4,8 @@ SRC				:=	main.c\
 						input.c\
 						list.c\
 						list_delete.c\
-						output.c
+						output.c\
+						parser.c
 
 OBJ				:=	$(SRC:.c=.o)
 HEADERS			:=	libmp.h list.h
