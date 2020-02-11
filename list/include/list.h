@@ -44,10 +44,18 @@ typedef struct	lines
 	size_t		qt_lines;
 }				lines_t;
 
-void			newElemList(infoList_t *list, char c);
-int				getLine(infoList_t *beg);
-void			addNewLine(lines_t *lines);
+/*
+**MAIN FUNC
+*/
 void			input(lines_t *lines);
+void			output(lines_t *lines);
+
+/*
+**LIST WORLK
+*/
+void			newElemList(infoList_t *list, char c);
+void			addNewLine(lines_t *lines);
+
 
 /*
 **FREE MEMORY

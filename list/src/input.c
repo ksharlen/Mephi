@@ -1,12 +1,12 @@
 #include "list.h"
 
-void	convertBufToList(infoList_t *list, char *buf)
+static void		convertBufToList(infoList_t *list, char *buf)
 {
 	while (*buf)
 		newElemList(list, *buf++);
 }
 
-int		getLine(infoList_t *beg)
+static int		getLine(infoList_t *beg)
 {
 	char	buf[SIZE_BUF] = {0};
 	int		retScanf;
@@ -27,7 +27,7 @@ int		getLine(infoList_t *beg)
 	return (retScanf);
 }
 
-static void	checkValidateInputString(infoList_t *beg)
+static void		checkValidateInputString(infoList_t *beg)
 {
 	list_t	*curr = beg->beg;
 
@@ -45,7 +45,7 @@ static void	checkValidateInputString(infoList_t *beg)
 	}
 }
 
-void	getLines(lines_t *lines)
+static void		getLines(lines_t *lines)
 {
 	int	readStream;
 

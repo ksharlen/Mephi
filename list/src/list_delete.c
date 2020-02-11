@@ -47,6 +47,11 @@ void	deleteLine(infoList_t **beg)
 		free(*beg);
 		(*beg) = NULL;
 	}
+	else if (*beg)
+	{
+		free(*beg);
+		*beg = NULL;
+	}
 	else
 		MP_DIE("beg == NULL || beg->size == 0");
 }
@@ -64,6 +69,6 @@ void	deleteLines(lines_t *lines)
 			deleteLine(&curr);
 		}
 	}
-	else
-		MP_DIE("deleteLines: lines->beg == NULL || lines->qt_lines == 0");
+	// else
+		// MP_DIE("deleteLines: lines->beg == NULL || lines->qt_lines == 0");
 }
