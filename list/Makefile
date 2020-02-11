@@ -1,16 +1,18 @@
+NAME			:=	list
 
-!!!!!!!!!!!!!!!NEED_REFACT_MAKE_FILE!!!!!!!!!!!!!!!!!!!
-NAME			:=	matr
-SRC				:=	
+SRC				:=	main.c\
+						input.c\
+						list.c
+
 OBJ				:=	$(SRC:.c=.o)
-HEADERS			:=	libmp.h matr.h
+HEADERS			:=	libmp.h list.h
 LIB				:=	libmp.a
 
-DIR_SRC			:=	src
-DIR_LIB			:=	..\lib
-DIR_OBJ			:=	obj
-DIR_INCLUDE_LIB	:=	..\lib
-DIR_INCLUDE		:=	.\include
+DIR_SRC			:=	./src/
+DIR_LIB			:=	../lib/
+DIR_OBJ			:=	./obj/
+DIR_INCLUDE_LIB	:=	../lib/
+DIR_INCLUDE		:=	./include/
 DIR_INCLUDES	:=	$(DIR_INCLUDE_LIB) $(DIR_INCLUDE)
 
 CC				:=	gcc
@@ -19,8 +21,8 @@ CFLAGS			:=	-Wall -Wextra -Werror
 REMOVE_DIR		:=	rm -rf
 REMOVE_FILE		:=	rm -rf
 
-OBJ_WITH_PATH	:=	$(addprefix $(DIR_OBJ)\, $(OBJ))
-LIB_WITH_PATH	:=	$(DIR_LIB)\$(LIB)
+OBJ_WITH_PATH	:=	$(addprefix $(DIR_OBJ), $(OBJ))
+LIB_WITH_PATH	:=	$(DIR_LIB)$(LIB)
 INCLUDES		:= $(addprefix -I , $(DIR_INCLUDE) $(DIR_INCLUDE_LIB))
 
 vpath		%.c $(DIR_SRC)
@@ -34,13 +36,13 @@ $(NAME): $(OBJ)
 	$(CC) $(OBJ_WITH_PATH) $(INCLUDES) -o $@ $(LIB_WITH_PATH)
 
 $(OBJ):%.o:%.c $(HEADERS) | $(DIR_OBJ)
-	$(CC) $(CFALGS) -c $< -o $(DIR_OBJ)/$@ $(INCLUDES) -pipe
+	$(CC) $(CFALGS) -c $< -o $(DIR_OBJ)$@ $(INCLUDES) -pipe
 
 $(DIR_OBJ):
-	md $@
+	mkdir -p $@
 
 $(LIB):
-	make -C ..\lib
+	make -C ../lib
 
 clean:
 	$(REMOVE_DIR) $(DIR_OBJ)
