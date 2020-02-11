@@ -35,20 +35,60 @@ static void	deleteSpacesAtBegin(infoList_t *line)
 	}//TODO delete spaces at begin
 }
 
-static void	deleteExtraSpaces(infoList_t *line)
+static list_t	*deleteExtraSpacesInsideString(list_t *line)
 {
-	list_t	*curr;
+	
+}
 
-	curr = line->beg;
-	deleteSpacesAtBegin(line);
+// static void	deleteExtraSpaces(infoList_t *line)
+// {
+// 	list_t	*curr;
+
+// 	curr = line->beg;
+// 	deleteSpacesAtBegin(line);
+// 	if (line->beg)
+// 		deleteExtraSpacesInsideString(line);
+// 	//TODO need check line if (line->beg != NULL)
+// 	//TODO deleteExtraSpacesInsideString()
+// }
+
+static list_t	*checkNumberForParityOfBits(list_t *string)
+{
+	list_t	*res = string;
+
+	while (res && !isspace(res->c))
+	{
+		if (!ISEVEN(res->c))
+		{
+			res = deleteNumber(string);
+			break ;
+		}
+		res = res->next;
+	}
+	return (res);
+}
+
+static void deleteExtraNumbers(infoList_t *line)
+{
+	list_t	*curr = line->beg;
+	list_t	*res;
+
+	while (curr)
+	{
+		curr = сheckNumberForParityOfBits(curr);
+		if (!curr)
+			break ;
+		curr = deleteExtraSpacesInsideString(curr);
+	}
 }
 
 static void	parseLine(infoList_t *line)
 {
 	if (line && line->size)
 	{
-		deleteExtraSpaces(line);
-		// deleteExtraNumbers(line);
+		deleteSpacesAtBegin(line);
+		if (line->beg)
+			deleteExtraNumbers(line);
 	}
 }
 

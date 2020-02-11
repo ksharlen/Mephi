@@ -22,6 +22,7 @@
 # define FMT_SCANF		"%31[^\n]"
 # define CLEAR_STREAM	"%*c"
 # define NOT_EOF		0
+# define ISEVEN(digit) (((digit) - '0') % 2)
 
 typedef struct	list_s
 {
