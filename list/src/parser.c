@@ -15,7 +15,10 @@ static void	deleteSpacesAtBegin(infoList_t *line)
 
 	curr = getNextSymAfterSpaces(line);
 	if (curr == NULL)
-		freeLine(line);
+	{
+		deleteList(&curr);
+		line->beg = NULL;
+	}
 	else if (line->beg != curr)
 	{
 		list_t	*tmp;

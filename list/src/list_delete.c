@@ -1,5 +1,20 @@
 #include "list.h"
 
+void	deleteList(list_t **beg)
+{
+	if (beg && *beg)
+	{
+		list_t	*tmp;
+
+		while ((*beg))
+		{
+			tmp = (*beg);
+			(*beg) = (*beg)->next;
+			free(tmp);
+		}
+	}
+}
+
 void	deleteSym(list_t **sym)
 {
 	if (sym && *sym)

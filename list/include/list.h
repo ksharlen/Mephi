@@ -62,6 +62,7 @@ void			addNewLine(lines_t *lines);
 **FREE MEMORY
 */
 void			deleteSym(list_t **sym);
+void			deleteList(list_t **beg);
 void			deleteLines(lines_t *lines);
 void			deleteLastLine(lines_t *lines);
 void			deleteLine(infoList_t **beg);

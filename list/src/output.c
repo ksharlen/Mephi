@@ -21,15 +21,13 @@ void	output(lines_t *lines)
 {
 	if (lines && lines->beg)
 	{
-		size_t		i = 0;
 		infoList_t	*curr;
 
 		curr = lines->beg;
-		while (i < lines->qt_lines)
+		while (curr)
 		{
 			printLine(curr);
 			curr = curr->next;
-			++i;
 		}
 	}
 	else
