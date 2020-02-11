@@ -39,7 +39,7 @@ $(NAME): $(OBJ)
 	$(CC) $(CFLAGS) $(OBJ_WITH_PATH) $(INCLUDES) -o $@ $(LIB_WITH_PATH)
 
 $(OBJ):%.o:%.c $(HEADERS) | $(DIR_OBJ)
-	$(CC) $(CFALGS) -c $< -o $(DIR_OBJ)$@ $(INCLUDES) -pipe
+	$(CC) $(CFLAGS) -c $< -o $(DIR_OBJ)$@ $(INCLUDES) -pipe
 
 $(DIR_OBJ):
 	mkdir -p $@

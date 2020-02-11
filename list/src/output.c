@@ -24,6 +24,7 @@ void	output(lines_t *lines)
 		infoList_t	*curr;
 
 		curr = lines->beg;
+		printf("%snewList:%s\n", GREEN_COLOR, DFLT_COLOR);
 		while (curr)
 		{
 			printLine(curr);

@@ -44,9 +44,10 @@
 /*
 **COLORS
 */
-# define DFLT_COLOR	"\x1b[0m"
-# define WAR_COLOR	"\x1b[38;2;217;89;208m"
-# define ERR_COLOR	"\x1b[38;2;224;58;58m"
+# define DFLT_COLOR		"\x1b[0m"
+# define WAR_COLOR		"\x1b[38;2;217;89;208m"
+# define ERR_COLOR		"\x1b[38;2;224;58;58m"
+# define GREEN_COLOR	"\x1b[32m"
 
 /*
 **DEFINE
