@@ -7,7 +7,7 @@ void	mp_warning(const char *err)
 
 void	mp_die(const char *err, const char *filename, const int line)
 {
-	fprintf(stderr, "%sfilename: %s\nline: %d\nerror: %s%s", ERR_COLOR, filename, line, err, DFLT_COLOR);
+	fprintf(stderr, "%sfilename: %s\nline: %d\nerror: %s%s\n", ERR_COLOR, filename, line, err, DFLT_COLOR);
 	exit(EXIT_FAILURE);
 }
 

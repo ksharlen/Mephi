@@ -8,6 +8,10 @@
 
 # include "libmp.h"
 
+# define INVALID_STRING	"Вы ввели строку состоящую не только из чисел"
+# define REPEAT_INPUT	"Повторите ввод"
+# define GREETING		"Введите строку:"
+
 # define INIT_LIST {NULL, NULL, 0}
 # define INIT_LINES {NULL, NULL, 0}
 
@@ -51,5 +55,6 @@ void			input(lines_t *lines);
 void			deleteLines(lines_t *lines);
 void			deleteLastLine(lines_t *lines);
 void			deleteLine(infoList_t **beg);
+void			freeLine(infoList_t *line);
 
 #endif

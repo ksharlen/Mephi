@@ -1,6 +1,6 @@
 #include "list.h"
 
-static void	freeLine(infoList_t *line)
+void	freeLine(infoList_t *line)
 {
 	if (line->beg && line->size)
 	{
@@ -29,9 +29,13 @@ void	deleteLastLine(lines_t *lines)
 			while (curr->next != lines->end)
 				curr = curr->next;
 		}
-		freeLine(lines->end);
+		if (lines->end->size)
+			freeLine(lines->end);
+		else
+			free(lines->end);
 		lines->end = curr;
 		curr->next = NULL;
+		--lines->qt_lines;
 	}
 }
 
