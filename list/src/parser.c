@@ -42,7 +42,7 @@ static void	deleteSpacesAtBegin(infoList_t *line)
 			line->beg = line->beg->next;
 			deleteSym(&tmp);
 		}
-	}//TODO delete spaces at begin
+	}
 }
 
 static list_t	*deleteExtraSpacesInsideString(infoList_t *line, list_t *curr)
