@@ -4,6 +4,7 @@
 # include <sys/types.h>
 # include <stdio.h>
 # include <stdlib.h>
+# include <string.h>
 
 # include "libmp.h"
 
@@ -37,7 +38,8 @@ typedef struct	lines
 }				lines_t;
 
 void			newElemList(infoList_t *list, char c);
-void			getLine(infoList_t *list);
+int				getLine(infoList_t *beg);
 void			addNewLine(lines_t *lines);
+void			input(lines_t *lines);
 
 #endif

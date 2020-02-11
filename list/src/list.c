@@ -4,14 +4,9 @@ static list_t	*createElemList(char c)
 {
 	list_t	*new = NULL;
 
-	if (c >= '0' && c <= '9')
-	{
-		new = mp_calloc(1, sizeof(list_t));
-		new->c = c;
-		new->next = NULL;
-	}
-	else
-		MP_DIE("Символ не является цифрой");
+	new = mp_calloc(1, sizeof(list_t));
+	new->c = c;
+	new->next = NULL;
 	return (new);
 }
 

@@ -6,29 +6,7 @@ void	convertBufToList(infoList_t *list, char *buf)
 		newElemList(list, *buf++);
 }
 
-void	getLine(infoList_t *list)
-{
-	int		retScanf;
-	char	buf[30] = {0};
-
-	do
-	{
-		retScanf = scanf("%29s", buf);
-
-		if (retScanf == EOF)
-		{
-			//TODO
-			return ;
-		}
-		else if (retScanf > 0)
-		{
-			convertBufToList(list, buf);
-			bzero(buf, sizeof(char) * 30);
-		}
-	} while (retScanf > 0);
-}
-
-void	getLine(infoList_t *beg)
+int		getLine(infoList_t *beg)
 {
 	char	buf[SIZE_BUF] = {0};
 	int		retScanf;
@@ -38,7 +16,8 @@ void	getLine(infoList_t *beg)
 		retScanf = scanf(FMT_SCANF, buf);
 		if (retScanf > 0)
 		{
-			//TODO
+			convertBufToList(beg, buf);
+			bzero(buf, SIZE_BUF);
 		}
 		else if (!retScanf)
 			scanf(CLEAR_STREAM);
@@ -56,12 +35,29 @@ void	getLines(lines_t *lines)
 	do
 	{
 		addNewLine(lines);
-		getLine(lines->end);
+		readStream = getLine(lines->end);
 		//TODO CHECK_INPUT в цикле
 	} while (readStream != EOF);
 }
 
+static void	print_lines(lines_t *lines)
+{
+	while (lines->beg)
+	{
+		while (lines->beg->beg)
+		{
+			printf("%c", lines->beg->beg->c);
+			lines->beg->beg = lines->beg->beg->next;
+		}
+		printf("\n");
+		lines->beg = lines->beg->next;
+	}
+	printf("\n");
+}
+
 void	input(lines_t *lines)
 {
-	getLines(&lines);
+	getLines(lines);
+	printf("%slines:%s\n", WAR_COLOR, DFLT_COLOR);
+	print_lines(lines);
 }
