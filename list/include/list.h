@@ -23,6 +23,8 @@
 # define CLEAR_STREAM	"%*c"
 # define NOT_EOF		0
 # define ISEVEN(digit) (((digit) - '0') % 2)
+# define VALID_VALUE		1
+# define NOT_VALID_VALIE	0
 
 typedef struct	list_s
 {
