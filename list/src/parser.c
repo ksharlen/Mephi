@@ -4,9 +4,11 @@ static void	printString(list_t *beg)
 {
 	while (beg)
 	{
-		printf("%c", beg->c);
+		printf("%d ", beg->c);
 		beg = beg->next;
 	}
+	if (!beg)
+		printf("%p", beg);
 	printf("\n");
 }
 
@@ -251,7 +253,7 @@ static list_t	*deleteSpacesBeforeNum(list_t *current)
 
 	while (current && isspace(current->c))
 	{
-		if (current->next && isdigit(current->next->c))
+		if (current->next && isdigit(current->next->c) && (current = current->next))
 			break ;
 		tmp = current;
 		current = current->next;
@@ -269,12 +271,37 @@ static void	deleteNotValidNumber(infoList_t *line)
 	{
 		lastDigit = getLastDigit(&current);
 		//TODO либо current и lastDigit NULL, либо current пробел, lastDigit последняя цифра в числе
-		if (deleteSpacesBeforeNum(current) == END_OF_LIST)
+		if ((current = deleteSpacesBeforeNum(current)) == END_OF_LIST)
 		{
-			lastDigit->next = NULL;
+			if (lastDigit)
+				lastDigit->next = NULL;// lastDigit->next = NULL;
 			break ;
 		}
+		else //TODO current на числе
+		{
+			if (checkValidNumber(current) == NOT_VALID_VALIE)
+			{
+				//TODO getNextNumber();
+				current = deleteNumber(current);
+				deleteSym(&lastDigit->next);
+				lastDigit = current;
+				if ((current = deleteSpacesBeforeNum(current)) == END_OF_LIST)
+				{
+					if (lastDigit)
+						lastDigit->next = NULL;
+					break ;
+				}
+				else
+				{
+					if (lastDigit)
+						lastDigit->next = current;
+				}
+				// lastDigit = current ? current : NULL;
+				// lastDigit->next = NULL;//может это и не нужно
+			}
+		}
 	}
+printStringExt(line->beg);
 }
 
 static void	parseLine(infoList_t *line)
