@@ -1,22 +1,22 @@
 #include "list.h"
 
-static void	printString(list_t *beg)
-{
-	while (beg)
-	{
-		printf("%c", beg->c);
-		beg = beg->next;
-	}
-	if (!beg)
-		printf("%p", beg);
-	printf("\n");
-}
+// static void	printString(list_t *beg)
+// {
+// 	while (beg)
+// 	{
+// 		printf("%c", beg->c);
+// 		beg = beg->next;
+// 	}
+// 	if (!beg)
+// 		printf("%p", beg);
+// 	printf("\n");
+// }
 
-static void	printStringExt(list_t *beg)
-{
-	printString(beg);
-	exit(EXIT_FAILURE);
-}
+// static void	printStringExt(list_t *beg)
+// {
+// 	printString(beg);
+// 	exit(EXIT_FAILURE);
+// }
 
 static list_t	*getNextSymAfterSpaces(infoList_t *line)
 {
@@ -128,7 +128,6 @@ static list_t	*deleteSpacesBeforeNum(list_t *current, list_t *lastDigit)
 		}
 		tmp = current;
 		current = current->next;
-		// lastDigit->next = current;
 		deleteSym(&tmp);
 	}
 	return (current);
@@ -161,15 +160,11 @@ static void	deleteNotValidNumber(infoList_t *line)
 					break ;
 				}
 				else
-				{
 					current = lastDigit;
-					// if (lastDigit)
-						// lastDigit->next = current;
-				}
 			}
 		}
 	}
-	printStringExt(line->beg);
+	// printStringExt(line->beg);
 }
 
 static void	parseLine(infoList_t *line)

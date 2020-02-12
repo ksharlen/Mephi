@@ -38,7 +38,7 @@ void	deleteSym(list_t **sym)
 
 void	freeLine(infoList_t *line)
 {
-	if (line->beg && line->size)
+	if (line->beg)
 	{
 		list_t	*curr;
 
@@ -48,10 +48,7 @@ void	freeLine(infoList_t *line)
 			line->beg = line->beg->next;
 			free(curr);
 		}
-		// *line = CLEAN_LINE;
 	}
-	else
-		MP_DIE("freeLine: line->beg == NULL || line->size == 0");
 }
 
 void	deleteLastLine(lines_t *lines)
@@ -77,19 +74,14 @@ void	deleteLastLine(lines_t *lines)
 
 void	deleteLine(infoList_t **beg)
 {
-	if (*beg && (*beg)->size)
+	if (*beg)
 	{
 		freeLine(*beg);
 		free(*beg);
 		(*beg) = NULL;
 	}
 	else if (*beg)
-	{
 		free(*beg);
-		// *beg = NULL;
-	}
-	else
-		MP_DIE("beg == NULL || beg->size == 0");
 }
 
 void	deleteLines(lines_t *lines)
