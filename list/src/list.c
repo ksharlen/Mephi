@@ -10,7 +10,6 @@ static list_t	*createElemList(char c)
 	return (new);
 }
 
-//TODO need check NULL
 void			newElemList(infoList_t *list, char c)
 {
 	list_t	*new = createElemList(c);

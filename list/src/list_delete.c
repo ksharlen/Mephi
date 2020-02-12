@@ -97,6 +97,4 @@ void	deleteLines(lines_t *lines)
 			deleteLine(&curr);
 		}
 	}
-	// else
-		// MP_DIE("deleteLines: lines->beg == NULL || lines->qt_lines == 0");
 }
