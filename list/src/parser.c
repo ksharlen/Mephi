@@ -128,6 +128,7 @@ static list_t	*deleteSpacesBeforeNum(list_t *current, list_t *lastDigit)
 		}
 		tmp = current;
 		current = current->next;
+		// lastDigit->next = current;
 		deleteSym(&tmp);
 	}
 	return (current);
@@ -152,15 +153,16 @@ static void	deleteNotValidNumber(infoList_t *line)
 			{
 				current = deleteNumber(current);
 				deleteSym(&lastDigit->next);
-				// lastDigit->next = current;
+				lastDigit->next = current;
 				if ((current = deleteSpacesBeforeNum(current, lastDigit)) == END_OF_LIST)
 				{
-					// if (lastDigit)
-						// lastDigit->next = NULL;
+					if (lastDigit)
+						lastDigit->next = NULL;
 					break ;
 				}
 				else
 				{
+					current = lastDigit;
 					// if (lastDigit)
 						// lastDigit->next = current;
 				}
