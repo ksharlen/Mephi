@@ -101,4 +101,3 @@ void		setHeadOnFirstValidNumber(infoList_t *line)
 		line->beg = current;
 	}
 }
-

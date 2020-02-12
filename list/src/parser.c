@@ -1,22 +1,22 @@
 #include "list.h"
 
-static void	printString(list_t *beg)
-{
-	while (beg)
-	{
-		printf("%c", beg->c);
-		beg = beg->next;
-	}
-	if (!beg)
-		printf("%p", beg);
-	printf("\n");
-}
+// static void	printString(list_t *beg)
+// {
+// 	while (beg)
+// 	{
+// 		printf("%c", beg->c);
+// 		beg = beg->next;
+// 	}
+// 	if (!beg)
+// 		printf("%p", beg);
+// 	printf("\n");
+// }
 
-static void	printStringExt(list_t *beg)
-{
-	printString(beg);
-	exit(EXIT_FAILURE);
-}
+// static void	printStringExt(list_t *beg)
+// {
+// 	printString(beg);
+// 	exit(EXIT_FAILURE);
+// }
 
 list_t		*deleteNumber(list_t *number)
 {
@@ -43,7 +43,7 @@ static int		deleteNotValidNumber(list_t **number, list_t **lastDigit)
 		return (END_OF_STRING);
 	}
 	else
-		(*number = (*lastDigit));
+		(*number) = (*lastDigit);
 	return (NOT_END_OF_STRING);
 }
 
@@ -61,7 +61,7 @@ static void	deleteNotValidNumbers(infoList_t *line)
 			break ;
 		}
 		else
-		{//TODO deleteNotCalidNumber
+		{
 			if (checkValidNumber(current) == NOT_VALID_VALIE)
 			{
 				if ((deleteNotValidNumber(&current, &lastDigit)) == END_OF_STRING)
@@ -69,12 +69,12 @@ static void	deleteNotValidNumbers(infoList_t *line)
 			}
 		}
 	}
-	printStringExt(line->beg);
+	// printStringExt(line->beg);
 }
 
 static void	parseLine(infoList_t *line)
 {
-	if (line && line->beg && line->size)
+	if (line && line->beg)
 	{
 		setHeadOnFirstValidNumber(line);
 		if (line->beg)
@@ -86,12 +86,12 @@ void	parser(lines_t *lines)
 {
 	if (lines->beg)
 	{
-		infoList_t	*curr = lines->beg;
+		infoList_t	*current = lines->beg;
 
-		while (curr)
+		while (current)
 		{
-			parseLine(curr);
-			curr = curr->next;
+			parseLine(current);
+			current = current->next;
 		}
 	}
 }
