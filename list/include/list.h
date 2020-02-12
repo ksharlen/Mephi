@@ -26,6 +26,8 @@
 # define VALID_VALUE		1
 # define NOT_VALID_VALIE	0
 # define END_OF_LIST		NULL
+# define END_OF_STRING		1
+# define NOT_END_OF_STRING	0
 
 typedef struct	list_s
 {

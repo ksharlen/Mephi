@@ -1,22 +1,22 @@
 #include "list.h"
 
-// static void	printString(list_t *beg)
-// {
-// 	while (beg)
-// 	{
-// 		printf("%c", beg->c);
-// 		beg = beg->next;
-// 	}
-// 	if (!beg)
-// 		printf("%p", beg);
-// 	printf("\n");
-// }
+static void	printString(list_t *beg)
+{
+	while (beg)
+	{
+		printf("%c", beg->c);
+		beg = beg->next;
+	}
+	if (!beg)
+		printf("%p", beg);
+	printf("\n");
+}
 
-// static void	printStringExt(list_t *beg)
-// {
-// 	printString(beg);
-// 	exit(EXIT_FAILURE);
-// }
+static void	printStringExt(list_t *beg)
+{
+	printString(beg);
+	exit(EXIT_FAILURE);
+}
 
 list_t		*deleteNumber(list_t *number)
 {
@@ -31,12 +31,23 @@ list_t		*deleteNumber(list_t *number)
 	return (number);
 }
 
-// static void deleteNotValidNumber(list_t *Number, list_t **lastDigit)
-// {
+static int		deleteNotValidNumber(list_t *number, list_t **lastDigit)
+{
+	number = deleteNumber(number);
+	deleteSym(&(*lastDigit)->next);
+	(*lastDigit)->next = number;
+	if ((number = deleteSpacesBeforeNum(number, *lastDigit)) == END_OF_LIST)
+	{
+		if (*lastDigit)
+			(*lastDigit)->next = NULL;
+		return (END_OF_STRING);
+	}
+	else
+		number = (*lastDigit);
+	return (NOT_END_OF_STRING);
+}
 
-// }
-
-static void	deleteNotValidNumber(infoList_t *line)
+static void	deleteNotValidNumbers(infoList_t *line)
 {
 	list_t	*lastDigit;
 	list_t	*current = line->beg;
@@ -53,20 +64,12 @@ static void	deleteNotValidNumber(infoList_t *line)
 		{//TODO deleteNotCalidNumber
 			if (checkValidNumber(current) == NOT_VALID_VALIE)
 			{
-				current = deleteNumber(current);
-				deleteSym(&lastDigit->next);
-				lastDigit->next = current;
-				if ((current = deleteSpacesBeforeNum(current, lastDigit)) == END_OF_LIST)
-				{
-					if (lastDigit)
-						lastDigit->next = NULL;
+				if ((deleteNotValidNumber(current, &lastDigit)) == END_OF_STRING)
 					break ;
-				}
-				else
-					current = lastDigit;
 			}
 		}
 	}
+	printStringExt(line->beg);
 }
 
 static void	parseLine(infoList_t *line)
@@ -75,7 +78,7 @@ static void	parseLine(infoList_t *line)
 	{
 		setHeadOnFirstValidNumber(line);
 		if (line->beg)
-			deleteNotValidNumber(line);
+			deleteNotValidNumbers(line);
 	}
 }
 
