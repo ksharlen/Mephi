@@ -152,17 +152,17 @@ static void	deleteNotValidNumber(infoList_t *line)
 			{
 				current = deleteNumber(current);
 				deleteSym(&lastDigit->next);
-				lastDigit = current;
+				// lastDigit->next = current;
 				if ((current = deleteSpacesBeforeNum(current, lastDigit)) == END_OF_LIST)
 				{
-					if (lastDigit)
-						lastDigit->next = NULL;
+					// if (lastDigit)
+						// lastDigit->next = NULL;
 					break ;
 				}
 				else
 				{
-					if (lastDigit)
-						lastDigit->next = current;
+					// if (lastDigit)
+						// lastDigit->next = current;
 				}
 			}
 		}
