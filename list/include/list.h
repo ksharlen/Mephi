@@ -25,6 +25,7 @@
 # define ISEVEN(digit) (((digit) - '0') % 2)
 # define VALID_VALUE		1
 # define NOT_VALID_VALIE	0
+# define END_OF_LIST		NULL
 
 typedef struct	list_s
 {

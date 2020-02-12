@@ -230,13 +230,62 @@ static void		setHeadOnFirstValidNumber(infoList_t *line)
 	}
 }
 
+static list_t	*getLastDigit(list_t **current)
+{
+	while (*current)
+	{
+		if (isdigit((*current)->c) && (*current)->next && isspace((*current)->next->c))
+		{
+			list_t	*lastDigit = (*current);
+			(*current) = (*current)->next;
+			return (lastDigit);
+		}
+		(*current) = (*current)->next;
+	}
+	return ((*current));
+}
+
+static list_t	*deleteSpacesBeforeNum(list_t *current)
+{
+	list_t	*tmp;
+
+	while (current && isspace(current->c))
+	{
+		if (current->next && isdigit(current->next->c))
+			break ;
+		tmp = current;
+		current = current->next;
+		deleteSym(&tmp);
+	}
+	return (current);
+}
+
+static void	deleteNotValidNumber(infoList_t *line)
+{
+	list_t	*lastDigit;
+	list_t	*current = line->beg;
+
+	while (current)
+	{
+		lastDigit = getLastDigit(&current);
+		//TODO либо current и lastDigit NULL, либо current пробел, lastDigit последняя цифра в числе
+		if (deleteSpacesBeforeNum(current) == END_OF_LIST)
+		{
+			lastDigit->next = NULL;
+			break ;
+		}
+	}
+}
+
 static void	parseLine(infoList_t *line)
 {
 	if (line && line->beg && line->size)
 	{
 		setHeadOnFirstValidNumber(line);
-printf("beg: %p\n", line->beg);
-printStringExt(line->beg);
+		if (line->beg)
+		{
+			deleteNotValidNumber(line);
+		}
 		// deleteSpacesAtBegin(line);
 		// if (line->beg)
 		// {
