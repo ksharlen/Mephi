@@ -51,6 +51,15 @@ int		checkValidNumber(list_t *number)
 	return (validate);
 }
 
+static list_t	*getNextSymAfterSpaces(infoList_t *line)
+{
+	list_t	*curr = line->beg;
+
+	while (curr && isspace(curr->c))
+		curr = curr->next;
+	return (curr);
+}
+
 static void	deleteSpacesAtBegin(infoList_t *line)
 {
 	list_t	*curr;

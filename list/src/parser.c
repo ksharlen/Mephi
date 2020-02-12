@@ -18,16 +18,7 @@
 // 	exit(EXIT_FAILURE);
 // }
 
-static list_t	*getNextSymAfterSpaces(infoList_t *line)
-{
-	list_t	*curr = line->beg;
-
-	while (curr && isspace(curr->c))
-		curr = curr->next;
-	return (curr);
-}
-
-static list_t	*deleteNumber(list_t *number)
+list_t		*deleteNumber(list_t *number)
 {
 	list_t	*tmp = number;
 
