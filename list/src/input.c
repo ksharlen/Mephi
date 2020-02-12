@@ -27,9 +27,10 @@ static int		getLine(infoList_t *beg)
 	return (retScanf);
 }
 
-static void		checkValidateInputString(infoList_t *beg)
+static int		checkValidateInputString(infoList_t *beg)
 {
 	list_t	*curr = beg->beg;
+	int		readStream = EOF;
 
 	while (curr)
 	{
@@ -37,24 +38,27 @@ static void		checkValidateInputString(infoList_t *beg)
 		{
 			freeLine(beg);
 			printf("%s\n%s\n", INVALID_STRING, REPEAT_INPUT);
-			getLine(beg);
+			if (getLine(beg) == EOF)
+				return (readStream);
 			checkValidateInputString(beg);
 			break ;
 		}
 		curr = curr->next;
 	}
+	return (0);
 }
 
 static void		getLines(lines_t *lines)
 {
 	int	readStream;
+	int	readRecursiveStream;
 
 	do
 	{
 		addNewLine(lines);
 		readStream = getLine(lines->end);
-		checkValidateInputString(lines->end);
-	} while (readStream != EOF);
+		readRecursiveStream = checkValidateInputString(lines->end);
+	} while (readStream != EOF && readRecursiveStream != EOF);
 	deleteLastLine(lines);
 }
 
