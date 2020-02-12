@@ -48,7 +48,7 @@ void	freeLine(infoList_t *line)
 			line->beg = line->beg->next;
 			free(curr);
 		}
-		*line = CLEAN_LINE;
+		// *line = CLEAN_LINE;
 	}
 	else
 		MP_DIE("freeLine: line->beg == NULL || line->size == 0");
