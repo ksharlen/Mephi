@@ -27,42 +27,6 @@ static list_t	*getNextSymAfterSpaces(infoList_t *line)
 	return (curr);
 }
 
-static void	deleteSpacesAtBegin(infoList_t *line)
-{
-	list_t	*curr;
-
-	curr = getNextSymAfterSpaces(line);
-	if (curr == NULL)
-		cleanLine(&line);
-	else if (line->beg != curr)
-	{
-		list_t	*tmp;
-
-		while (line->beg != curr)
-		{
-			tmp = line->beg;
-			line->beg = line->beg->next;
-			deleteSym(&tmp);
-		}
-	}
-}
-
-static int	checkValidNumber(list_t *number)
-{
-	int	validate = VALID_VALUE;
-
-	while (number && isdigit(number->c))
-	{
-		if (ISEVEN(number->c))
-		{
-			validate = NOT_VALID_VALIE;
-			break ;
-		}
-		number = number->next;
-	}
-	return (validate);
-}
-
 static list_t	*deleteNumber(list_t *number)
 {
 	list_t	*tmp = number;
@@ -76,62 +40,10 @@ static list_t	*deleteNumber(list_t *number)
 	return (number);
 }
 
-static void		setHeadOnFirstValidNumber(infoList_t *line)
-{
-	list_t	*current = line->beg;
+// static void deleteNotValidNumber(list_t *Number, list_t **lastDigit)
+// {
 
-	while (current)
-	{
-		if (isspace(current->c))
-		{
-			deleteSpacesAtBegin(line);
-			current = line->beg;
-		}
-		else if (isdigit(current->c))
-		{
-			if (checkValidNumber(current) == VALID_VALUE)
-				break ;
-			else
-				current = deleteNumber(current);
-		}
-		line->beg = current;
-	}
-}
-
-static list_t	*getLastDigit(list_t **current)
-{
-	while (*current)
-	{
-		if ((isdigit((*current)->c) && (*current)->next && isspace((*current)->next->c)) ||
-			(!(*current)->next))
-		{
-			list_t	*lastDigit = (*current);
-			(*current) = (*current)->next;
-			return (lastDigit);
-		}
-		(*current) = (*current)->next;
-	}
-	return ((*current));
-}
-
-static list_t	*deleteSpacesBeforeNum(list_t *current, list_t *lastDigit)
-{
-	list_t	*tmp;
-
-	while (current && isspace(current->c))
-	{
-		if (current->next && isdigit(current->next->c))
-		{
-			lastDigit->next = current;
-			current = current->next;
-			break ;
-		}
-		tmp = current;
-		current = current->next;
-		deleteSym(&tmp);
-	}
-	return (current);
-}
+// }
 
 static void	deleteNotValidNumber(infoList_t *line)
 {
@@ -147,7 +59,7 @@ static void	deleteNotValidNumber(infoList_t *line)
 			break ;
 		}
 		else
-		{
+		{//TODO deleteNotCalidNumber
 			if (checkValidNumber(current) == NOT_VALID_VALIE)
 			{
 				current = deleteNumber(current);
@@ -164,7 +76,6 @@ static void	deleteNotValidNumber(infoList_t *line)
 			}
 		}
 	}
-	// printStringExt(line->beg);
 }
 
 static void	parseLine(infoList_t *line)
@@ -173,15 +84,13 @@ static void	parseLine(infoList_t *line)
 	{
 		setHeadOnFirstValidNumber(line);
 		if (line->beg)
-		{
 			deleteNotValidNumber(line);
-		}
 	}
 }
 
 void	parser(lines_t *lines)
 {
-	if (lines->qt_lines && lines->beg)
+	if (lines->beg)
 	{
 		infoList_t	*curr = lines->beg;
 

@@ -61,6 +61,14 @@ void			parser(lines_t *lines);
 void			newElemList(infoList_t *list, char c);
 void			addNewLine(lines_t *lines);
 
+/*
+**COMMON
+*/
+list_t			*deleteSpacesBeforeNum(list_t *current, list_t *lastDigit);
+list_t			*getLastDigit(list_t **current);
+int				checkValidNumber(list_t *number);
+void			setHeadOnFirstValidNumber(infoList_t *line);
+
 
 /*
 **FREE MEMORY
