@@ -31,19 +31,19 @@ list_t		*deleteNumber(list_t *number)
 	return (number);
 }
 
-static int		deleteNotValidNumber(list_t *number, list_t **lastDigit)
+static int		deleteNotValidNumber(list_t **number, list_t **lastDigit)
 {
-	number = deleteNumber(number);
+	(*number) = deleteNumber(*number);
 	deleteSym(&(*lastDigit)->next);
-	(*lastDigit)->next = number;
-	if ((number = deleteSpacesBeforeNum(number, *lastDigit)) == END_OF_LIST)
+	(*lastDigit)->next = (*number);
+	if (((*number) = deleteSpacesBeforeNum(*number, *lastDigit)) == END_OF_LIST)
 	{
 		if (*lastDigit)
 			(*lastDigit)->next = NULL;
 		return (END_OF_STRING);
 	}
 	else
-		number = (*lastDigit);
+		(*number = (*lastDigit));
 	return (NOT_END_OF_STRING);
 }
 
@@ -64,7 +64,7 @@ static void	deleteNotValidNumbers(infoList_t *line)
 		{//TODO deleteNotCalidNumber
 			if (checkValidNumber(current) == NOT_VALID_VALIE)
 			{
-				if ((deleteNotValidNumber(current, &lastDigit)) == END_OF_STRING)
+				if ((deleteNotValidNumber(&current, &lastDigit)) == END_OF_STRING)
 					break ;
 			}
 		}
