@@ -4,7 +4,7 @@ static void	printString(list_t *beg)
 {
 	while (beg)
 	{
-		printf("%d ", beg->c);
+		printf("%c", beg->c);
 		beg = beg->next;
 	}
 	if (!beg)
@@ -26,140 +26,6 @@ static list_t	*getNextSymAfterSpaces(infoList_t *line)
 		curr = curr->next;
 	return (curr);
 }
-
-// static list_t	*deleteExtraSpacesInsideString(infoList_t *line, list_t *curr)
-// {
-// 	if (line->beg == curr)
-// 	{
-// 		deleteSpacesAtBegin(line);
-// 		curr = line->beg;
-// 	}
-// 	else
-// 	{
-// 		list_t	*tmp;
-// 		//TODO удаляем все пробелы подряд кроме одного последнего перед числом, но если числа нет, удаляем и этот пробел
-// 		while (curr)
-// 		{
-// 			if (isspace(curr->c))
-// 			{
-// 				if ((curr->next && !isdigit(curr->next->c)) || (!curr->next))
-// 				{
-// 					tmp = curr;
-// 					curr = curr->next;
-// 					deleteSym(&tmp);
-// 				}
-// 				else
-// 				{
-// 					curr = curr->next;
-// 					break ;
-// 				}
-// 			}
-// 		}
-// 	}
-// 	return (curr);
-// }
-
-// // static void		cleanGarbage(infoList_t *line, list_t *beforeSym)
-// // {
-// // 	list_t	*curr = line->beg;
-
-// // 	while (curr && curr->next && curr->next->next && curr->next->next != beforeSym)
-// // 		curr = curr->next;
-// // 	line->end = curr;
-// // 	deleteSym(&curr->next);
-// // 	curr->next = NULL;
-// // }
-
-// static list_t	*deleteNumber(list_t *number, infoList_t *line)
-// {
-// 	list_t	*tmp;
-// 	list_t	*beginNumber = number;
-
-// 	P_UNUSED(line);
-// 	while (number && !isspace(number->c))
-// 	{
-// 		// if (number == line->end && line->beg != line->end)
-// 		// {
-// 		// 	cleanGarbage(line, beginNumber);
-// 		// 	break ;
-// 		// }
-// 		tmp = number;
-// 		number = number->next;
-// 		deleteSym(&tmp);
-// 	}
-// 	return (number);
-// }
-
-// //TODO до пробела или до конца строки
-// static list_t	*checkNumberForParityOfBits(infoList_t *line, list_t *curr)
-// {
-// 	list_t	*begBit = curr;
-
-// // printStringExt(line->beg);
-// 	while (curr && !isspace(curr->c))
-// 	{
-// 		if (ISEVEN(curr->c))
-// 		{
-// 			curr = deleteNumber(begBit, line);
-// 			if (begBit == line->beg)
-// 				line->beg = curr;
-// 			break ;
-// 		}
-// 		curr = curr->next;
-// 	}
-// 	return (curr);
-// }
-
-// static void deleteExtraNumbers(infoList_t *line)
-// {
-// 	list_t	*curr = line->beg;
-
-// 	while (curr)
-// 	{
-// // exit(EXIT_FAILURE);
-// // printf("line->beg: %d\nsizeLine: %zd\n", line->beg->c, line->size);
-// // exit(EXIT_FAILURE);
-// 		curr = checkNumberForParityOfBits(line, curr);
-// // printStringExt(line->beg);
-// 		if (!curr)
-// 			break ;
-// // printf("here\n");
-// 		curr = deleteExtraSpacesInsideString(line, curr);
-// 	}
-// }
-
-// static list_t	*getLastDigitNum(list_t *begNumber)
-// {
-// 	while (begNumber && begNumber->next && !isspace(begNumber->next->c))
-// 		begNumber = begNumber->next;
-// 	return (begNumber);
-// }
-
-// static void	deleteExtraSpacesAtEndLine(infoList_t *line)
-// {
-// 	list_t	*lastDigitBeforeDelSpaces;
-// 	list_t	*curr = line->beg;
-
-// 	lastDigitBeforeDelSpaces = getLastDigitNum(curr);
-// 	curr = lastDigitBeforeDelSpaces->next;
-// 	while (curr)
-// 	{
-// 		if (isdigit(curr->c))
-// 		{
-// 			lastDigitBeforeDelSpaces = getLastDigitNum(curr);
-// 			curr = lastDigitBeforeDelSpaces->next;
-// 		}
-// 		else
-// 			curr = curr->next;
-// 	}
-// 	deleteExtraSpacesInsideString(line, lastDigitBeforeDelSpaces->next);
-// 	line->end = lastDigitBeforeDelSpaces;
-// 	line->end->next = NULL;
-// // printStringExt(line->beg);
-// // printf("digit: %c\n", lastDigitBeforeDelSpaces->c);
-// // exit(EXIT_FAILURE);
-// // printStringExt(line->beg);
-// }
 
 static void	deleteSpacesAtBegin(infoList_t *line)
 {
@@ -236,7 +102,8 @@ static list_t	*getLastDigit(list_t **current)
 {
 	while (*current)
 	{
-		if (isdigit((*current)->c) && (*current)->next && isspace((*current)->next->c))
+		if ((isdigit((*current)->c) && (*current)->next && isspace((*current)->next->c)) ||
+			(!(*current)->next))
 		{
 			list_t	*lastDigit = (*current);
 			(*current) = (*current)->next;
@@ -270,18 +137,15 @@ static void	deleteNotValidNumber(infoList_t *line)
 	while (current)
 	{
 		lastDigit = getLastDigit(&current);
-		//TODO либо current и lastDigit NULL, либо current пробел, lastDigit последняя цифра в числе
 		if ((current = deleteSpacesBeforeNum(current)) == END_OF_LIST)
 		{
-			if (lastDigit)
-				lastDigit->next = NULL;// lastDigit->next = NULL;
+			lastDigit->next = NULL;
 			break ;
 		}
-		else //TODO current на числе
+		else
 		{
 			if (checkValidNumber(current) == NOT_VALID_VALIE)
 			{
-				//TODO getNextNumber();
 				current = deleteNumber(current);
 				deleteSym(&lastDigit->next);
 				lastDigit = current;
@@ -296,12 +160,10 @@ static void	deleteNotValidNumber(infoList_t *line)
 					if (lastDigit)
 						lastDigit->next = current;
 				}
-				// lastDigit = current ? current : NULL;
-				// lastDigit->next = NULL;//может это и не нужно
 			}
 		}
 	}
-printStringExt(line->beg);
+	printStringExt(line->beg);
 }
 
 static void	parseLine(infoList_t *line)
@@ -313,22 +175,11 @@ static void	parseLine(infoList_t *line)
 		{
 			deleteNotValidNumber(line);
 		}
-		// deleteSpacesAtBegin(line);
-		// if (line->beg)
-		// {
-		// 	deleteExtraSpacesAtEndLine(line);
-		// }
-		// if (line->beg)
-		// {
-		// 	deleteExtraNumbers(line);
-		// }
 	}
 }
 
 void	parser(lines_t *lines)
 {
-	//TODO del_space
-	//TODO check_num
 	if (lines->qt_lines && lines->beg)
 	{
 		infoList_t	*curr = lines->beg;
