@@ -29,17 +29,17 @@
 # define END_OF_STRING		1
 # define NOT_END_OF_STRING	0
 
-typedef struct	list_s
+typedef struct	line_s
 {
 	char			c;
-	struct list_s	*next;
-}				list_t;
+	struct line_s	*next;
+}				line_t;
 
 typedef struct	infoList_s
 {
 	struct infoList_s	*next;
-	list_t				*beg;
-	list_t				*end;
+	line_t				*beg;
+	line_t				*end;
 	size_t				size;
 }				infoList_t;
 
@@ -66,18 +66,18 @@ void			addNewLine(lines_t *lines);
 /*
 **COMMON
 */
-list_t			*deleteSpacesBeforeNum(list_t *current, list_t *lastDigit);
-list_t			*getLastDigit(list_t **current);
-int				checkValidNumber(list_t *number);
+line_t			*deleteSpacesBeforeNum(line_t *current, line_t *lastDigit);
+line_t			*getLastDigit(line_t **current);
+int				checkValidNumber(line_t *number);
 void			setHeadOnFirstValidNumber(infoList_t *line);
-list_t			*deleteNumber(list_t *number);
+line_t			*deleteNumber(line_t *number);
 
 
 /*
 **FREE MEMORY
 */
-void			deleteSym(list_t **sym);
-void			deleteList(list_t **beg);
+void			deleteSym(line_t **sym);
+void			deleteList(line_t **beg);
 void			deleteLines(lines_t *lines);
 void			deleteLastLine(lines_t *lines);
 void			deleteLine(infoList_t **beg);

@@ -1,10 +1,10 @@
 #include "list.h"
 
-void	deleteList(list_t **beg)
+void	deleteList(line_t **beg)
 {
 	if (beg && *beg)
 	{
-		list_t	*tmp;
+		line_t	*tmp;
 
 		while ((*beg))
 		{
@@ -27,7 +27,7 @@ void	cleanLine(infoList_t **line)
 	}
 }
 
-void	deleteSym(list_t **sym)
+void	deleteSym(line_t **sym)
 {
 	if (sym && *sym)
 	{
@@ -40,7 +40,7 @@ void	freeLine(infoList_t *line)
 {
 	if (line->beg)
 	{
-		list_t	*curr;
+		line_t	*curr;
 
 		while (line->beg)
 		{

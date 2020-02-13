@@ -1,13 +1,13 @@
 #include "list.h"
 
-list_t	*getLastDigit(list_t **current)
+line_t	*getLastDigit(line_t **current)
 {
 	while (*current)
 	{
 		if ((isdigit((*current)->c) && (*current)->next && isspace((*current)->next->c)) ||
 			(!(*current)->next))
 		{
-			list_t	*lastDigit = (*current);
+			line_t	*lastDigit = (*current);
 			(*current) = (*current)->next;
 			return (lastDigit);
 		}
@@ -16,9 +16,9 @@ list_t	*getLastDigit(list_t **current)
 	return ((*current));
 }
 
-list_t	*deleteSpacesBeforeNum(list_t *current, list_t *lastDigit)
+line_t	*deleteSpacesBeforeNum(line_t *current, line_t *lastDigit)
 {
-	list_t	*tmp;
+	line_t	*tmp;
 
 	while (current && isspace(current->c))
 	{
@@ -35,7 +35,7 @@ list_t	*deleteSpacesBeforeNum(list_t *current, list_t *lastDigit)
 	return (current);
 }
 
-int		checkValidNumber(list_t *number)
+int		checkValidNumber(line_t *number)
 {
 	int	validate = VALID_VALUE;
 
@@ -51,9 +51,9 @@ int		checkValidNumber(list_t *number)
 	return (validate);
 }
 
-static list_t	*getNextSymAfterSpaces(infoList_t *line)
+static line_t	*getNextSymAfterSpaces(infoList_t *line)
 {
-	list_t	*curr = line->beg;
+	line_t	*curr = line->beg;
 
 	while (curr && isspace(curr->c))
 		curr = curr->next;
@@ -62,14 +62,14 @@ static list_t	*getNextSymAfterSpaces(infoList_t *line)
 
 static void	deleteSpacesAtBegin(infoList_t *line)
 {
-	list_t	*curr;
+	line_t	*curr;
 
 	curr = getNextSymAfterSpaces(line);
 	if (curr == NULL)
 		cleanLine(&line);
 	else if (line->beg != curr)
 	{
-		list_t	*tmp;
+		line_t	*tmp;
 
 		while (line->beg != curr)
 		{
@@ -82,7 +82,7 @@ static void	deleteSpacesAtBegin(infoList_t *line)
 
 void		setHeadOnFirstValidNumber(infoList_t *line)
 {
-	list_t	*current = line->beg;
+	line_t	*current = line->beg;
 
 	while (current)
 	{

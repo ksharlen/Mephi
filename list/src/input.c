@@ -29,7 +29,7 @@ static int		getLine(infoList_t *beg)
 
 static int		checkValidateInputString(infoList_t *beg)
 {
-	list_t	*curr = beg->beg;
+	line_t	*curr = beg->beg;
 	int		readStream = EOF;
 
 	while (curr)

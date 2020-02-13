@@ -4,7 +4,7 @@ static void	printLine(infoList_t *line)
 {
 	if (line->beg)
 	{
-		list_t	*curr = line->beg;
+		line_t	*curr = line->beg;
 
 		while (curr)
 		{

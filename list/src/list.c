@@ -1,10 +1,10 @@
 #include "list.h"
 
-static list_t	*createElemList(char c)
+static line_t	*createElemList(char c)
 {
-	list_t	*new = NULL;
+	line_t	*new = NULL;
 
-	new = mp_calloc(1, sizeof(list_t));
+	new = mp_calloc(1, sizeof(line_t));
 	new->c = c;
 	new->next = NULL;
 	return (new);
@@ -12,7 +12,7 @@ static list_t	*createElemList(char c)
 
 void			newElemList(infoList_t *list, char c)
 {
-	list_t	*new = createElemList(c);
+	line_t	*new = createElemList(c);
 
 	if (list)
 	{

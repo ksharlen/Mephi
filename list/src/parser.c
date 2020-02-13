@@ -1,26 +1,8 @@
 #include "list.h"
 
-// static void	printString(list_t *beg)
-// {
-// 	while (beg)
-// 	{
-// 		printf("%c", beg->c);
-// 		beg = beg->next;
-// 	}
-// 	if (!beg)
-// 		printf("%p", beg);
-// 	printf("\n");
-// }
-
-// static void	printStringExt(list_t *beg)
-// {
-// 	printString(beg);
-// 	exit(EXIT_FAILURE);
-// }
-
-list_t		*deleteNumber(list_t *number)
+line_t		*deleteNumber(line_t *number)
 {
-	list_t	*tmp = number;
+	line_t	*tmp = number;
 
 	while (number && isdigit(number->c))
 	{
@@ -31,7 +13,7 @@ list_t		*deleteNumber(list_t *number)
 	return (number);
 }
 
-static int		deleteNotValidNumber(list_t **number, list_t **lastDigit)
+static int		deleteNotValidNumber(line_t **number, line_t **lastDigit)
 {
 	(*number) = deleteNumber(*number);
 	deleteSym(&(*lastDigit)->next);
@@ -49,8 +31,8 @@ static int		deleteNotValidNumber(list_t **number, list_t **lastDigit)
 
 static void	deleteNotValidNumbers(infoList_t *line)
 {
-	list_t	*lastDigit;
-	list_t	*current = line->beg;
+	line_t	*lastDigit;
+	line_t	*current = line->beg;
 
 	while (current)
 	{
