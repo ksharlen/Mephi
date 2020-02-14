@@ -1,6 +1,7 @@
 #include "list.h"
 
-static void	printLine(infoList_t *line)
+
+static void		printLine(infoList_t *line)
 {
 	if (line->beg)
 	{
@@ -25,7 +26,6 @@ void	output(lines_t *lines)
 		size_t		i = 1;
 
 		curr = lines->beg;
-		printf("%snewList:%s\n", GREEN_COLOR, DFLT_COLOR);
 		while (curr)
 		{
 			printf("line %zd:>", i++);

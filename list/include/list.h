@@ -72,7 +72,6 @@ int				checkValidNumber(line_t *number);
 void			setHeadOnFirstValidNumber(infoList_t *line);
 line_t			*deleteNumber(line_t *number);
 
-
 /*
 **FREE MEMORY
 */
