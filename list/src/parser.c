@@ -42,11 +42,10 @@ static void	deleteNotValidNumbers(infoList_t *line)
 			lastDigit->next = NULL;
 			break ;
 		}
-		else if (checkValidNumber(current) == NOT_VALID_VALIE
+		else if (checkValidNumber(current) == NOT_VALID_VALUE
 				&& (deleteNotValidNumber(&current, &lastDigit) == END_OF_STRING))
 				break ;
 	}
-	// printStringExt(line->beg);
 }
 
 static void	parseLine(infoList_t *line)
@@ -57,6 +56,8 @@ static void	parseLine(infoList_t *line)
 		if (line->beg)
 			deleteNotValidNumbers(line);
 	}
+	// TODO: for tests
+	//printStringExt(line->beg);
 }
 
 void	parser(lines_t *lines)

@@ -43,7 +43,7 @@ int		checkValidNumber(line_t *number)
 	{
 		if (ISEVEN(number->c))
 		{
-			validate = NOT_VALID_VALIE;
+			validate = NOT_VALID_VALUE;
 			break ;
 		}
 		number = number->next;

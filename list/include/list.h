@@ -24,7 +24,7 @@
 # define NOT_EOF		0
 # define ISEVEN(digit) (((digit) - '0') % 2)
 # define VALID_VALUE		1
-# define NOT_VALID_VALIE	0
+# define NOT_VALID_VALUE	0
 # define END_OF_LIST		NULL
 # define END_OF_STRING		1
 # define NOT_END_OF_STRING	0

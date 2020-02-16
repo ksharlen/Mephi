@@ -1,5 +1,3 @@
-// #include "list.h"
-
 // static void	printString(line_t *beg)
 // {
 // 	while (beg)
@@ -8,7 +6,7 @@
 // 		beg = beg->next;
 // 	}
 // 	if (!beg)
-// 		printf("%p", beg);
+// 		printf("(nil)");
 // 	printf("\n");
 // }
 
