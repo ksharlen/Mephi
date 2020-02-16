@@ -1,6 +1,7 @@
 #ifndef LIBMP_H
 # define LIBMP_H
 
+# include <unistd.h>
 # include <sys/types.h>
 # include <stdio.h>
 # include <stdlib.h>
@@ -27,14 +28,7 @@
 // #  define WRITE _write
 // # endif
 
-//LINUX
-# ifdef linux
-#  include <unistd.h>
-#  define WRITE write
-# elif __linux__
-#  include <unistd.h>
-#  define WRITE write
-# endif
+# define WRITE	write
 
 # define FULL_PROG
 
