@@ -31,10 +31,16 @@ static int		checkValidateInputString(infoList_t *beg)
 {
 	line_t	*curr = beg->beg;
 	int		readStream = EOF;
+	int		dot = 0;
 
 	while (curr)
 	{
-		if (!isdigit(curr->c) && !isspace(curr->c))
+		if (isdigit(curr->c) && curr->next && curr->next->c == '.' && curr->next->next && isdigit(curr->next->next->c) && !dot)
+		{
+			++dot;
+			curr = curr->next->next;
+		}
+		else if ((!isdigit(curr->c)) && !isspace(curr->c))
 		{
 			freeLine(beg);
 			printf("%s\n%s\n", INVALID_STRING, REPEAT_INPUT);
