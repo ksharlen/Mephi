@@ -28,6 +28,9 @@
 # define END_OF_LIST		NULL
 # define END_OF_STRING		1
 # define NOT_END_OF_STRING	0
+# define SRC_LINES			"Source lines:"
+# define NEW_LINES			"New lines:"
+# define LINE_COLOR			CYAN_COLOR
 
 typedef struct	line_s
 {
@@ -54,8 +57,10 @@ typedef struct	lines
 **MAIN FUNC
 */
 void			input(lines_t *lines);
-void			output(lines_t *lines);
+// void			output(lines_t *lines);
 void			parser(lines_t *lines);
+void			printSourceLines(lines_t *lines);
+void			printNewLines(lines_t *lines);
 
 /*
 **LIST WORLK

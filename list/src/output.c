@@ -18,7 +18,7 @@ static void		printLine(infoList_t *line)
 	printf("\n");
 }
 
-void	output(lines_t *lines)
+void	printLines(lines_t *lines)
 {
 	if (lines && lines->beg)
 	{
@@ -28,11 +28,25 @@ void	output(lines_t *lines)
 		curr = lines->beg;
 		while (curr)
 		{
-			printf("line %zd:>", i++);
+			printf("%sline %s%zd:>", LINE_COLOR, DFLT_COLOR, i++);
 			printLine(curr);
 			curr = curr->next;
 		}
 	}
 	else
 		printf("none\n");
+}
+
+void	printSourceLines(lines_t *lines)
+{
+	write(STDOUT_FILENO, "\x1b[2J", 4);
+	write(STDOUT_FILENO, "\x1b[H", 3);
+	printf("%s%s\n%s", ORANGE_COLOR, SRC_LINES, DFLT_COLOR);
+	printLines(lines);
+}
+
+void	printNewLines(lines_t *lines)
+{
+	printf("%s%s%s\n", GREEN_COLOR, NEW_LINES, DFLT_COLOR);
+	printLines(lines);
 }

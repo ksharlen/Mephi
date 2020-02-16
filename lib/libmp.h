@@ -38,10 +38,12 @@
 /*
 **COLORS
 */
+# define ORANGE_COLOR	"\x1b[38;2;255;116;0m"
+# define GREEN_COLOR	"\x1b[38;2;0;187;63m"
+# define CYAN_COLOR		"\x1b[38;2;48;213;200m"
 # define DFLT_COLOR		"\x1b[0m"
 # define WAR_COLOR		"\x1b[38;2;217;89;208m"
 # define ERR_COLOR		"\x1b[38;2;224;58;58m"
-# define GREEN_COLOR	"\x1b[32m"
 
 /*
 **DEFINE
