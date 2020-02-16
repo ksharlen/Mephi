@@ -6,12 +6,8 @@ int		main(void)
 
 	input(&lines);
 	printSourceLines(&lines);
-	// printf("Source Lines:\n");
-	// output(&lines);
 	parser(&lines);
-	// printf("%sNew Lines:%s\n", GREEN_COLOR, DFLT_COLOR);
 	printNewLines(&lines);
-	// output(&lines);
 	deleteLines(&lines);
 	return (0);
 }
