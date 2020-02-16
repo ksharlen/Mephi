@@ -17,15 +17,10 @@ void			newElemList(infoList_t *list, char c)
 	if (list)
 	{
 		if (list->beg)
-		{
 			list->end->next = new;
-			list->end = new;
-		}
 		else
-		{
 			list->beg = new;
-			list->end = new;
-		}
+		list->end = new;
 		++list->size;
 	}
 }
