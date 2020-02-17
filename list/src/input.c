@@ -31,9 +31,9 @@ static int		getLine(infoList_t *beg)
 
 static int		checkValidateInputString(infoList_t *beg)
 {
-	line_t	*curr = beg->beg;
-	int		readStream = EOF;
-	int		dot = 0;
+	line_t	*curr 		= beg->beg;
+	int		readStream	= 0;
+	int		dot			= 0;
 
 	while (curr)
 	{
@@ -48,14 +48,12 @@ static int		checkValidateInputString(infoList_t *beg)
 		{
 			freeLine(beg);
 			printf("%s\n%s\n", INVALID_STRING, REPEAT_INPUT);
-			if (getLine(beg) == EOF)
-				return (readStream);
-			checkValidateInputString(beg);
-			break ;
+			readStream = getLine(beg);
+			return (readStream + checkValidateInputString(beg));
 		}
 		curr = curr->next;
 	}
-	return (0);
+	return (readStream);
 }
 
 static void		getLines(lines_t *lines)
