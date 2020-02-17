@@ -103,3 +103,30 @@ void		setHeadOnFirstValidNumber(infoLine_t *line)
 		line->beg = current;
 	}
 }
+
+void	deleteTabsLine(infoLine_t *line)
+{
+	if (line->beg)
+	{
+		line_t	*curr = line->beg;
+
+		while (curr)
+		{
+			if (isspace(curr->c) && curr->c != ' ')
+				curr->c = ' ';
+			curr = curr->next;
+		}
+	}
+}
+
+void	deleteTabsLines(lines_t *lines)
+{
+	infoLine_t	*curr = lines->beg;
+
+	while (curr)
+	{
+		deleteTabsLine(curr);
+		curr = curr->next;
+	}
+
+}

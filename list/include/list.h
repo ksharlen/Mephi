@@ -76,6 +76,7 @@ line_t			*getLastDigit(line_t **current);
 int				checkValidNumber(line_t *number);
 void			setHeadOnFirstValidNumber(infoLine_t *line);
 line_t			*deleteNumber(line_t *number);
+void			deleteTabsLines(lines_t *lines);
 
 /*
 **FREE MEMORY

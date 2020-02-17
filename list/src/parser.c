@@ -60,6 +60,8 @@ static void	parseLine(infoLine_t *line)
 	//printStringExt(line->beg);
 }
 
+//TODO:
+
 void	parser(lines_t *lines)
 {
 	if (lines->beg)
@@ -71,5 +73,6 @@ void	parser(lines_t *lines)
 			parseLine(current);
 			current = current->next;
 		}
+		deleteTabsLines(lines);
 	}
 }
