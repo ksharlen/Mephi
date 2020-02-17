@@ -39,8 +39,10 @@ int		checkValidNumber(line_t *number)
 {
 	int	validate = VALID_VALUE;
 
-	while (number && isdigit(number->c))
+	while (number && (isdigit(number->c) || number->c == '.'))
 	{
+		if (number->c == '.')
+			number = number->next;
 		if (ISEVEN(number->c))
 		{
 			validate = NOT_VALID_VALUE;

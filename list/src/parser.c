@@ -4,7 +4,7 @@ line_t		*deleteNumber(line_t *number)
 {
 	line_t	*tmp = number;
 
-	while (number && isdigit(number->c))
+	while (number && (isdigit(number->c) || number->c == '.'))
 	{
 		tmp = number;
 		number = number->next;

@@ -1,5 +1,7 @@
 #include "list.h"
 
+#define DOUBLE_NUMBER isdigit(curr->c) && curr->next && curr->next->c == '.' && curr->next->next && isdigit(curr->next->next->c) && !dot
+
 static void		convertBufToList(infoList_t *list, char *buf)
 {
 	while (*buf)
@@ -35,11 +37,13 @@ static int		checkValidateInputString(infoList_t *beg)
 
 	while (curr)
 	{
-		if (isdigit(curr->c) && curr->next && curr->next->c == '.' && curr->next->next && isdigit(curr->next->next->c) && !dot)
+		if (DOUBLE_NUMBER)
 		{
 			++dot;
 			curr = curr->next->next;
 		}
+		else if (isspace(curr->c))
+			dot = 0;
 		else if ((!isdigit(curr->c)) && !isspace(curr->c))
 		{
 			freeLine(beg);
