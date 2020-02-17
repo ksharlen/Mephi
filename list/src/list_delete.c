@@ -16,7 +16,7 @@ void	deleteList(line_t **beg)
 	}
 }
 
-void	cleanLine(infoList_t **line)
+void	cleanLine(infoLine_t **line)
 {
 	if (line && *line)
 	{
@@ -36,7 +36,7 @@ void	deleteSym(line_t **sym)
 	}
 }
 
-void	freeLine(infoList_t *line)
+void	freeLine(infoLine_t *line)
 {
 	if (line->beg)
 	{
@@ -55,7 +55,7 @@ void	deleteLastLine(lines_t *lines)
 {
 	if (lines->end && lines->qt_lines)
 	{
-		infoList_t	*curr = lines->beg;
+		infoLine_t	*curr = lines->beg;
 
 		if (lines->qt_lines > 1)
 		{
@@ -72,7 +72,7 @@ void	deleteLastLine(lines_t *lines)
 	}
 }
 
-void	deleteLine(infoList_t **beg)
+void	deleteLine(infoLine_t **beg)
 {
 	if (*beg)
 	{
@@ -88,7 +88,7 @@ void	deleteLines(lines_t *lines)
 {
 	if (lines->beg && lines->qt_lines)
 	{
-		infoList_t	*curr;
+		infoLine_t	*curr;
 
 		while (lines->beg)
 		{

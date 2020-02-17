@@ -5,13 +5,13 @@
 	&& currentSym->next->next && isdigit(currentSym->next->next->c)\
 	&& !dot
 
-static void		convertBufToList(infoList_t *list, char *buf)
+static void		convertBufToList(infoLine_t *list, char *buf)
 {
 	while (*buf)
 		newElemList(list, *buf++);
 }
 
-static int		getLine(infoList_t *beg)
+static int		getLine(infoLine_t *beg)
 {
 	char	buf[SIZE_BUF] = {0};
 	int		retScanf;
@@ -32,7 +32,7 @@ static int		getLine(infoList_t *beg)
 	return (retScanf);
 }
 
-static int		checkValidateInputString(infoList_t *beg)
+static int		checkValidateInputString(infoLine_t *beg)
 {
 	line_t	*currentSym 		= beg->beg;
 	int		readStream	= 0;

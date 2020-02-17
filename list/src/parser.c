@@ -29,7 +29,7 @@ static int		deleteNotValidNumber(line_t **number, line_t **lastDigit)
 	return (NOT_END_OF_STRING);
 }
 
-static void	deleteNotValidNumbers(infoList_t *line)
+static void	deleteNotValidNumbers(infoLine_t *line)
 {
 	line_t	*lastDigit;
 	line_t	*current = line->beg;
@@ -48,7 +48,7 @@ static void	deleteNotValidNumbers(infoList_t *line)
 	}
 }
 
-static void	parseLine(infoList_t *line)
+static void	parseLine(infoLine_t *line)
 {
 	if (line && line->beg)
 	{
@@ -64,7 +64,7 @@ void	parser(lines_t *lines)
 {
 	if (lines->beg)
 	{
-		infoList_t	*current = lines->beg;
+		infoLine_t	*current = lines->beg;
 
 		while (current)
 		{

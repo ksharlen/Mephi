@@ -10,7 +10,7 @@ static line_t	*createElemList(char c)
 	return (new);
 }
 
-void			newElemList(infoList_t *list, char c)
+void			newElemList(infoLine_t *list, char c)
 {
 	line_t	*new = createElemList(c);
 
@@ -25,11 +25,11 @@ void			newElemList(infoList_t *list, char c)
 	}
 }
 
-infoList_t	*createNewLine(void)
+infoLine_t	*createNewLine(void)
 {
-	infoList_t	*new;
+	infoLine_t	*new;
 
-	new = (infoList_t *)mp_calloc(1, sizeof(infoList_t));
+	new = (infoLine_t *)mp_calloc(1, sizeof(infoLine_t));
 	new->beg = NULL;
 	new->end = NULL;
 	new->next = NULL;
@@ -39,7 +39,7 @@ infoList_t	*createNewLine(void)
 
 void		addNewLine(lines_t *lines)
 {
-	infoList_t	*new = createNewLine();
+	infoLine_t	*new = createNewLine();
 
 	if (lines)
 	{

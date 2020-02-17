@@ -21,10 +21,10 @@
 # define TRUE	1
 # define FALSE	0
 
-# define EMPTY_LINE	(struct line){0, NULL}
+# define EMPTY_LINE		(struct line){0, NULL}
 # define EMPTY_MATRIX	(matrix){NULL, 0}
 
-struct line
+struct 			line
 {
 	len_t	sizeLine;
 	int		*value;
@@ -36,9 +36,9 @@ typedef struct	s_matr
 	size_t		numLines;
 }				matrix;
 
-void	input(matrix *matr);
-matrix	parser(matrix *src_matr);
-void	output(matrix *srcMatr, matrix *newMatr);
-void	erase(matrix *srcMatr, matrix *newMatr);
+void			input(matrix *matr);
+matrix			parser(matrix *src_matr);
+void			output(matrix *srcMatr, matrix *newMatr);
+void			erase(matrix *srcMatr, matrix *newMatr);
 
 #endif

@@ -53,7 +53,7 @@ int		checkValidNumber(line_t *number)
 	return (validate);
 }
 
-static line_t	*getNextSymAfterSpaces(infoList_t *line)
+static line_t	*getNextSymAfterSpaces(infoLine_t *line)
 {
 	line_t	*curr = line->beg;
 
@@ -62,7 +62,7 @@ static line_t	*getNextSymAfterSpaces(infoList_t *line)
 	return (curr);
 }
 
-static void	deleteSpacesAtBegin(infoList_t *line)
+static void	deleteSpacesAtBegin(infoLine_t *line)
 {
 	line_t	*curr;
 
@@ -82,7 +82,7 @@ static void	deleteSpacesAtBegin(infoList_t *line)
 	}
 }
 
-void		setHeadOnFirstValidNumber(infoList_t *line)
+void		setHeadOnFirstValidNumber(infoLine_t *line)
 {
 	line_t	*current = line->beg;
 

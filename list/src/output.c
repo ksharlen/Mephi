@@ -1,7 +1,7 @@
 #include "list.h"
 
 
-static void		printLine(infoList_t *line)
+static void		printLine(infoLine_t *line)
 {
 	if (line->beg)
 	{
@@ -22,7 +22,7 @@ void	printLines(lines_t *lines)
 {
 	if (lines && lines->beg)
 	{
-		infoList_t	*curr;
+		infoLine_t	*curr;
 		size_t		i = 1;
 
 		curr = lines->beg;

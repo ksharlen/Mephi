@@ -15,7 +15,7 @@
 # define INIT_LIST {NULL, NULL, 0}
 # define INIT_LINES {NULL, NULL, 0}
 
-# define CLEAN_LINE	(infoList_t){NULL, NULL, 0}
+# define CLEAN_LINE	(infoLine_t){NULL, NULL, 0}
 
 # define SIZE_BUF 			32
 
@@ -39,18 +39,18 @@ typedef struct	line_s
 	struct line_s	*next;
 }				line_t;
 
-typedef struct	infoList_s
+typedef struct	infoLine
 {
-	struct infoList_s	*next;
+	struct infoLine	*next;
 	line_t				*beg;
 	line_t				*end;
 	size_t				size;
-}				infoList_t;
+}				infoLine_t;
 
 typedef struct	lines
 {
-	infoList_t	*beg;
-	infoList_t	*end;
+	infoLine_t	*beg;
+	infoLine_t	*end;
 	size_t		qt_lines;
 }				lines_t;
 
@@ -65,7 +65,7 @@ void			printNewLines(lines_t *lines);
 /*
 **LIST WORLK
 */
-void			newElemList(infoList_t *list, char c);
+void			newElemList(infoLine_t *list, char c);
 void			addNewLine(lines_t *lines);
 
 /*
@@ -74,7 +74,7 @@ void			addNewLine(lines_t *lines);
 line_t			*deleteSpacesBeforeNum(line_t *current, line_t *lastDigit);
 line_t			*getLastDigit(line_t **current);
 int				checkValidNumber(line_t *number);
-void			setHeadOnFirstValidNumber(infoList_t *line);
+void			setHeadOnFirstValidNumber(infoLine_t *line);
 line_t			*deleteNumber(line_t *number);
 
 /*
@@ -84,8 +84,8 @@ void			deleteSym(line_t **sym);
 void			deleteList(line_t **beg);
 void			deleteLines(lines_t *lines);
 void			deleteLastLine(lines_t *lines);
-void			deleteLine(infoList_t **beg);
-void			freeLine(infoList_t *line);
-void			cleanLine(infoList_t **line);
+void			deleteLine(infoLine_t **beg);
+void			freeLine(infoLine_t *line);
+void			cleanLine(infoLine_t **line);
 
 #endif
