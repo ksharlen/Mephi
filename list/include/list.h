@@ -17,12 +17,12 @@
 
 # define CLEAN_LINE	(infoList_t){NULL, NULL, 0}
 
-# define SIZE_BUF 32
+# define SIZE_BUF 			32
 
-# define FMT_SCANF		"%31[^\n]"
-# define CLEAR_STREAM	"%*c"
-# define NOT_EOF		0
-# define ISEVEN(digit) (((digit) - '0') % 2)
+# define FMT_SCANF			"%31[^\n]"
+# define CLEAR_STREAM		"%*c"
+# define NOT_EOF			0
+# define ISEVEN(digit) 		(((digit) - '0') % 2)
 # define VALID_VALUE		1
 # define NOT_VALID_VALUE	0
 # define END_OF_LIST		NULL
@@ -58,7 +58,6 @@ typedef struct	lines
 **MAIN FUNC
 */
 void			input(lines_t *lines);
-// void			output(lines_t *lines);
 void			parser(lines_t *lines);
 void			printSourceLines(lines_t *lines);
 void			printNewLines(lines_t *lines);
