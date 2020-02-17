@@ -24,7 +24,7 @@ line_t	*deleteSpacesBeforeNum(line_t *current, line_t *lastDigit)
 	{
 		if (current->next && isdigit(current->next->c))
 		{
-			lastDigit->next = current;//TODO
+			lastDigit->next = current;//TODO: need refact!
 			current = current->next;
 			break ;
 		}

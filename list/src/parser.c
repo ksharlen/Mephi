@@ -14,7 +14,7 @@ line_t		*deleteNumber(line_t *number)
 }
 
 static int		deleteNotValidNumber(line_t **number, line_t **lastDigit)
-{
+{//TODO: need refact
 	(*number) = deleteNumber(*number);
 	deleteSym(&(*lastDigit)->next);
 	(*lastDigit)->next = (*number);
@@ -44,7 +44,7 @@ static void	deleteNotValidNumbers(infoList_t *line)
 		}
 		else if (checkValidNumber(current) == NOT_VALID_VALUE
 				&& (deleteNotValidNumber(&current, &lastDigit) == END_OF_STRING))
-				break ;
+			break ;
 	}
 }
 
@@ -52,7 +52,7 @@ static void	parseLine(infoList_t *line)
 {
 	if (line && line->beg)
 	{
-		setHeadOnFirstValidNumber(line);//TODO
+		setHeadOnFirstValidNumber(line);//TODO: need refact
 		if (line->beg)
 			deleteNotValidNumbers(line);
 	}

@@ -1,8 +1,9 @@
 #include "list.h"
 
-#define DOUBLE_NUMBER isdigit(curr->c)	&& curr->next && curr->next->c == SPLIT_FOR_DBL_NUM\
-										&& curr->next->next && isdigit(curr->next->next->c)\
-										&& !dot
+#define DOUBLE_NUMBER isdigit(currentSym->c) && currentSym->next\
+	&& currentSym->next->c == SPLIT_FOR_DBL_NUM\
+	&& currentSym->next->next && isdigit(currentSym->next->next->c)\
+	&& !dot
 
 static void		convertBufToList(infoList_t *list, char *buf)
 {
@@ -33,27 +34,27 @@ static int		getLine(infoList_t *beg)
 
 static int		checkValidateInputString(infoList_t *beg)
 {
-	line_t	*curr 		= beg->beg;
+	line_t	*currentSym 		= beg->beg;
 	int		readStream	= 0;
 	int		dot			= 0;
 
-	while (curr)
+	while (currentSym)
 	{
 		if (DOUBLE_NUMBER)
 		{
 			++dot;
-			curr = curr->next->next;
+			currentSym = currentSym->next->next;
 		}
-		else if (isspace(curr->c))
+		else if (isspace(currentSym->c))
 			dot = 0;
-		else if ((!isdigit(curr->c)) && !isspace(curr->c))
+		else if ((!isdigit(currentSym->c)) && !isspace(currentSym->c))
 		{
 			freeLine(beg);
 			printf("%s\n%s\n", INVALID_STRING, REPEAT_INPUT);
 			readStream = getLine(beg);
 			return (readStream + checkValidateInputString(beg));
 		}
-		curr = curr->next;
+		currentSym = currentSym->next;
 	}
 	return (readStream);
 }
@@ -72,7 +73,7 @@ static void		getLines(lines_t *lines)
 	deleteLastLine(lines);
 }
 
-void	input(lines_t *lines)
+void			input(lines_t *lines)
 {
 	getLines(lines);
 }
