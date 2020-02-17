@@ -31,6 +31,7 @@
 # define SRC_LINES			"Source lines:"
 # define NEW_LINES			"New lines:"
 # define LINE_COLOR			CYAN_COLOR
+# define SPLIT_FOR_DBL_NUM	'.'
 
 typedef struct	line_s
 {

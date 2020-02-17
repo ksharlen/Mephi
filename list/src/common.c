@@ -39,9 +39,9 @@ int		checkValidNumber(line_t *number)
 {
 	int	validate = VALID_VALUE;
 
-	while (number && (isdigit(number->c) || number->c == '.'))
+	while (number && (isdigit(number->c) || number->c == SPLIT_FOR_DBL_NUM))
 	{
-		if (number->c == '.')
+		if (number->c == SPLIT_FOR_DBL_NUM)
 			number = number->next;
 		if (ISEVEN(number->c))
 		{

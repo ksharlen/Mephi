@@ -1,6 +1,8 @@
 #include "list.h"
 
-#define DOUBLE_NUMBER isdigit(curr->c) && curr->next && curr->next->c == '.' && curr->next->next && isdigit(curr->next->next->c) && !dot
+#define DOUBLE_NUMBER isdigit(curr->c)	&& curr->next && curr->next->c == SPLIT_FOR_DBL_NUM\
+										&& curr->next->next && isdigit(curr->next->next->c)\
+										&& !dot
 
 static void		convertBufToList(infoList_t *list, char *buf)
 {
