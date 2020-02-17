@@ -51,8 +51,8 @@ $(LIB):
 clean:
 	$(REMOVE_DIR) $(DIR_OBJ)
 
-fclean:
-	$(REMOVE_FILE)
+fclean: clean
+	$(REMOVE_FILE) $(NAME)
 
 re: clean fclean all
 
